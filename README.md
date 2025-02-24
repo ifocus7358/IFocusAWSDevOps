@@ -19,7 +19,7 @@ GitHub account creation:: for creating github account EmailId is Required
 go to link --https://github.com/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F&source=header-home
 
 Enter Email & password ,Username click continue ---Account will create successfully
-
+![image](https://github.com/user-attachments/assets/f108ebee-716b-43d8-b5b5-d19ed291e9c1)
 
 Repository: storage area of your source code.
 Create a Repository on GitHub
@@ -37,7 +37,7 @@ Enter Repository Name::
 
 ![image](https://github.com/user-attachments/assets/872899bf-bcec-468e-b1c6-023044f49df4)
 
-![image](https://github.com/user-attachments/assets/f108ebee-716b-43d8-b5b5-d19ed291e9c1)
+
 
 Public
 Anyone on the internet can see this repository.

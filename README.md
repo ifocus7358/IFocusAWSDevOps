@@ -21,6 +21,8 @@ go to link --https://github.com/signup?ref_cta=Sign+up&ref_loc=header+logged+out
 Enter Email & password ,Username click continue ---Account will create successfully
 ![image](https://github.com/user-attachments/assets/f108ebee-716b-43d8-b5b5-d19ed291e9c1)
 
+Github::Github is a one of the SCM(Source code management) tool and store the Project code.
+
 Repository: storage area of your source code.
 Create a Repository on GitHub
 

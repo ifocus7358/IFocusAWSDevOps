@@ -1,6 +1,9 @@
-# IFocusAWSDevOps
+
 
 # IFocusAWSDevOps
+
+24/02/2025::
+==============
 
 What is Git?
 
@@ -177,11 +180,24 @@ Screenshot::
 ![image](https://github.com/user-attachments/assets/1e723036-90a9-4cee-8d31-2746f37f525b)
 
 
+25/02/2025:::
+==============
+
 Github branching strategy::
 
 
 ![image](https://github.com/user-attachments/assets/dac55b58-d16d-4049-8a2b-4c3a8f979999)
 
+main or master branch:: This is default branch and whenever we created the empty Repository by defauly main or master branche is created automatically.
+
+feature branch:: It could be a new feature, an improvement of existing features, bug fixes, or any other changes. A feature branch is a type of branch in Git typically used to develop new features for the software.
+
+formate:: feature/YYYY.MM.DD
+ feature/2025.02.24
+
+release branch:: Based on the release we have created release branch accourdingly and starts the next release cycle
+
+release/2025.02.24
 
 cloning references::
 
@@ -190,7 +206,49 @@ cloning references::
 
 Generate SSHKeys::
 
+syntax::ssh-keygen -t ed25519 -C "your_email@example.com"
+
+Keys avaibale path and save the key (/c/Users/HP/.ssh/id_ed25519):
+![image](https://github.com/user-attachments/assets/c1031abb-57bf-4585-88a9-e1fbb9358621)
+
+![image](https://github.com/user-attachments/assets/ce78114d-1a3f-4adf-a677-c3f26736f6cc)
+
+
+Please follow below links for more understanding 
+
 https://docs.github.com/en/authentication/connecting-to-github-with-ssh
 
 https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
+Once genearted the keys (public/private) and copy public key to Github Account
+
+Go to -->settings
+
+![image](https://github.com/user-attachments/assets/e6856f23-6d62-4e02-8fb2-05c720542ec3)
+
+Click SSH and GPG Keys
+
+![image](https://github.com/user-attachments/assets/906f1f68-79a8-4920-837f-38f165e5849e)
+
+click New SSH Key
+
+![image](https://github.com/user-attachments/assets/a461189f-f9e1-415c-b52e-c25f6cfaf1d2)
+
+Add new SSH Key and click Add SSH Key
+
+![image](https://github.com/user-attachments/assets/f62d4d90-f588-462b-bf04-54de51e566d8)
+
+
+How to Raise PR (Pull Request) ::
+
+Go to -->Pull requests and click
+
+![image](https://github.com/user-attachments/assets/5cfe4883-dd46-4643-a506-b54262c36202)
+
+Click New Pull Request::
+
+![image](https://github.com/user-attachments/assets/37020743-a2e9-4163-9afd-7680d58fc63a)
+
+![image](https://github.com/user-attachments/assets/dad8eec2-b480-460f-8715-9d9c5fc3c12d)
+
 

@@ -177,6 +177,13 @@ Screenshot::
 ![image](https://github.com/user-attachments/assets/1e723036-90a9-4cee-8d31-2746f37f525b)
 
 
+Github branching strategy::
+
+
+![image](https://github.com/user-attachments/assets/dac55b58-d16d-4049-8a2b-4c3a8f979999)
+
+
+
 Generate SSHKeys::
 
 https://docs.github.com/en/authentication/connecting-to-github-with-ssh

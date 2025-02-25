@@ -239,7 +239,9 @@ Add new SSH Key and click Add SSH Key
 ![image](https://github.com/user-attachments/assets/f62d4d90-f588-462b-bf04-54de51e566d8)
 
 
-How to Raise PR (Pull Request) ::
+Raise PR (Pull Request) :: Merge the code from one branch to another branch that is called pull request
+
+below are the steps to raise PR::
 
 Go to -->Pull requests and click
 
@@ -251,4 +253,30 @@ Click New Pull Request::
 
 ![image](https://github.com/user-attachments/assets/dad8eec2-b480-460f-8715-9d9c5fc3c12d)
 
+please select base & compare branches so here base branch is release/2025.02.25 and compare branch is feature/2025.02.25
 
+i'm going to merge code changes from feature branch to release branch 
+
+![image](https://github.com/user-attachments/assets/185f0572-c51a-4ab2-884c-d2694522b268)
+
+click create pull request
+
+![image](https://github.com/user-attachments/assets/91068166-9d06-4b47-9d68-8c1251b0872f)
+
+![image](https://github.com/user-attachments/assets/08a98671-c810-46fc-9024-17bae7538a61)
+
+
+parasa7358 wants to merge 1 commit into release/2025.02.25 from feature/2025.02.25  
+
+click merge request
+
+![image](https://github.com/user-attachments/assets/44a4b84e-1aef-4b19-a93e-64e48b362b29)
+
+
+confirm merge
+
+![image](https://github.com/user-attachments/assets/cc12b687-b664-4497-bf91-0ab17f37bfa0)
+
+Merged
+
+![image](https://github.com/user-attachments/assets/9ee86d60-3e25-40a2-8d45-3bfe67668a2e)

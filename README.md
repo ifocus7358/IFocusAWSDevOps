@@ -183,6 +183,10 @@ Github branching strategy::
 ![image](https://github.com/user-attachments/assets/dac55b58-d16d-4049-8a2b-4c3a8f979999)
 
 
+cloning references::
+
+![image](https://github.com/user-attachments/assets/87f6ed4a-095b-4faa-854a-7fcdc019f31f)
+
 
 Generate SSHKeys::
 

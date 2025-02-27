@@ -288,3 +288,9 @@ confirm merge
 Merged
 
 ![image](https://github.com/user-attachments/assets/9ee86d60-3e25-40a2-8d45-3bfe67668a2e)
+
+
+26/02/2025::
+=============
+
+1. completely we have occupied this session is issues resolutions and we will continue new topic in next session

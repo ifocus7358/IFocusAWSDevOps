@@ -450,9 +450,13 @@ Jenkins is a free and open source automation server/tool. It helps automate the 
 <img width="846" alt="jenkins overview" src="https://github.com/user-attachments/assets/ffb9a0c8-0a8c-4b43-953e-36cd17297716" />
 
 Jenkins is a Orchestration tool
+
 Jenkins is a CI/CD tool
+
 Jenkins is a Schedular
+
 Jenkins is a crone job schedular 
+
 
 Continuous Integration(CI)::the practice of automating the integration of code changes from multiple Developers into a single software project. It's a primary DevOps best practice, allowing developers to frequently merge code changes into a central repository,after which automated builds and tests are run automatically.
 
@@ -460,12 +464,14 @@ developers frequently commit to a shared repository using a version control syst
 
 Continuous Delivery (CD)::Continuous Delivery is a software development practice in which code changes are automatically built, tested, and prepared for release to production in a consistent and reliable manner. The key distinction of continuous delivery is that the process of deploying the code to production is done manually by a human decision-maker.
 
-![image](https://github.com/user-attachments/assets/bcdfc15c-1ea0-4d17-abe0-4bcc25e1c630)
+![image](https://github.com/user-attachments/assets/a3be0abd-12cf-49a5-b1e5-e56d54ac1080)
+
 
 
 Continuous Deployment(CD) :: Continuous Deployment is an extension of continuous delivery. With continuous deployment, every change that passes through the automated tests and builds is automatically deployed to production without any human intervention. The deployment process is fully automated.
 
-![image](https://github.com/user-attachments/assets/40a25287-2d0a-4372-acb5-3490773f0c9e)
+![image](https://github.com/user-attachments/assets/03cd5335-7656-4b39-80c3-e7ba7a0234a9)
+
 
 Roles And Responsibilities::
 

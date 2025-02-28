@@ -440,4 +440,58 @@ To github.com:parasa7358/spring-petclinic.git
    Please be practice above 3 users activity in real time bases 
 
    
+28/02/2025::
+================
+
+Jenkins Introductiion::
+
+Jenkins is a free and open source automation server/tool. It helps automate the parts of software development related to building, testing, and deploying, facilitating continuous integration and continuous delivery.
+
+<img width="846" alt="jenkins overview" src="https://github.com/user-attachments/assets/ffb9a0c8-0a8c-4b43-953e-36cd17297716" />
+
+Jenkins is a Orchestration tool
+Jenkins is a CI/CD tool
+Jenkins is a Schedular
+Jenkins is a crone job schedular 
+
+Continuous Integration(CI)::the practice of automating the integration of code changes from multiple Developers into a single software project. It's a primary DevOps best practice, allowing developers to frequently merge code changes into a central repository,after which automated builds and tests are run automatically.
+
+developers frequently commit to a shared repository using a version control system such as Git,A continuous integration automatically builds and runs unit tests on the new code changes to immediately using jenkins Orchestration.
+
+Continuous Delivery (CD)::Continuous Delivery is a software development practice in which code changes are automatically built, tested, and prepared for release to production in a consistent and reliable manner. The key distinction of continuous delivery is that the process of deploying the code to production is done manually by a human decision-maker.
+
+![image](https://github.com/user-attachments/assets/bcdfc15c-1ea0-4d17-abe0-4bcc25e1c630)
+
+
+Continuous Deployment(CD) :: Continuous Deployment is an extension of continuous delivery. With continuous deployment, every change that passes through the automated tests and builds is automatically deployed to production without any human intervention. The deployment process is fully automated.
+
+![image](https://github.com/user-attachments/assets/40a25287-2d0a-4372-acb5-3490773f0c9e)
+
+Roles And Responsibilities::
+
+1)The devops engineer was responsibility to release the product to the market as soon as possible
+2)release the product speed to the market
+3)Devops engineer was give continues feedback to the developers
+4) Devops engineer responsibility start from git and end with production
+
+A) when your activity start from git and end with production environment(production servers)Continues deployment
+when your activity start from git to LLE(lower level environment,testing environment,pre-prod…et) environment(pre-production servers)Continues delivery non-production environment
+
+Download JDK 17 ::
+
+https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html
+
+Windows x64 Installer	153.92 MB	
+https://download.oracle.com/java/17/archive/jdk-17.0.12_windows-x64_bin.exe (sha256 )
+
+OR
+
+Windows x64 Compressed Archive	172.87 MB	
+https://download.oracle.com/java/17/archive/jdk-17.0.12_windows-x64_bin.zip (sha256 )
+
+Download Maven::
+
+https://maven.apache.org/download.cgi
+
+Source zip archive	apache-maven-3.9.9-src.zip
 

@@ -619,11 +619,17 @@ Click New Item
 Configuration stages::
 
 1.General
+
 2.Source code management (SCM)
+
 3.Triggres
+
 4.Environment
+
 5.Build Steps
+
 6.Post Build Actions
+
 
 ![image](https://github.com/user-attachments/assets/b7b5caf1-3d81-4de0-aebc-c2dc5080f916)
 
@@ -650,9 +656,16 @@ Goals section
 Maven goals::
 
 >mvn test
+
 >mvn install
+
+
 >mvn clean install
+
+
 >mvn clean
+
+
 >mvn package
 
 ![image](https://github.com/user-attachments/assets/53d49170-9dfe-4cad-abc0-50bf268e96c7)

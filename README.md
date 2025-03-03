@@ -680,3 +680,153 @@ Buils is Inprogress
 
 ![image](https://github.com/user-attachments/assets/c6e399ce-ac52-47de-94a3-b4d6d156dce5)
 
+
+
+
+
+03/03/2025::
+=====================
+
+
+Poll SCM ::Jenkins server ask git if there is any changes in git server or not, if changes there Jenkins server build/package the changes , every change build happened like 5 mints ,means every 5 minutes verify the Jenkins server to git if there is any changes 
+
+![image](https://github.com/user-attachments/assets/6f436ad6-e92a-40e3-831a-23219c288217)
+
+POLL SCM ----* * * * * --every minute when every commit 
+
+Build Periodically :::something changes in git I want build the changes, what can you do for that,
+For example –I want build every 24 hr ,so only 24 hrs only build happened.
+
+Create one sample POLL SCM jenkins job::
+===========================================
+Go to jenkins Dashboard
+click New Item
+
+![image](https://github.com/user-attachments/assets/1c62657f-935b-4eed-b032-08842fb09a57)
+
+Description
+
+![image](https://github.com/user-attachments/assets/3a54ba69-b2aa-4443-ad9b-d18ab5fbde02)
+
+
+Provide the Git URL
+
+![image](https://github.com/user-attachments/assets/1fb7b83f-3bba-411b-aad9-a725f25d3e1c)
+
+
+Branch buiild
+
+![image](https://github.com/user-attachments/assets/71aec8f1-4783-4e97-97cb-232dd18811ae)
+
+POLL SCM:: * * * * *
+
+every minute build was trigger when new commits happend in github repository
+
+![image](https://github.com/user-attachments/assets/d6ab7a34-156a-4430-9d40-31e362ad23b1)
+
+
+Build Steps::
+
+![image](https://github.com/user-attachments/assets/4aae78af-d217-41de-a1e6-16bfe2e34472)
+
+
+Build Periodically:::	H/15 * * * *   ----this build happened every 5 minutes without commits ,if changes are commit or not but every 5 mints build happened in Jenkins 
+
+Create Sample Build peridiocally jenkins job::
+=============================================
+
+Description
+
+![image](https://github.com/user-attachments/assets/5ad69478-039e-4ef7-a35f-cb18ed8364f1)
+
+Git url::
+
+![image](https://github.com/user-attachments/assets/b2cbdb7c-14ac-4fae-a240-90cc7a82c78d)
+
+Build the branch
+
+![image](https://github.com/user-attachments/assets/94230c57-b88f-4ab1-b894-151f30fa6d53)
+
+every 5 mints build will trigger
+
+Build Periodically:::	H/15 * * * *   ----this build happened every 5 minutes without commits ,if changes are commit or not but every 5 mints build happened in Jenkins 
+![image](https://github.com/user-attachments/assets/a5321109-944b-4e79-9294-e28c2adfea0d)
+
+click save 
+
+Whenever you configure a build activities :::
+=======================================
+
+SCM::
+
+	Where is your project
+
+Build environment::
+
+---all about your workspace folders 
+
+Build Triggers::
+
+--whenever code changes 
+--periodic
+---script calls 
+
+Build steps::
+
+Dev team will tell ,
+
+Post build::
+
+That aim is giving continue feedback to dev team
+
+--send mails
+--build pass/fail
+--CI
+
+Manage Jenkins::
+=================
+
+1.configure system
+
+--number of executors
+--E-mail notifications
+--internall org SMTP
+
+We don’t change anything in system level configurations
+
+Configure Global security::
+=========================
+
+--matrix security
+---jenkins level security
+
+Configure credentials::
+===============
+
+Above options we can’t do anything in your organization
+
+
+Global tool configuration:
+================
+
+Java::
+
+![image](https://github.com/user-attachments/assets/64a43077-1689-4802-9fab-d316634d426d)
+
+ 
+
+Maven::
+
+![image](https://github.com/user-attachments/assets/74bac0fa-9552-4289-b1db-79f729b9de75)
+
+ 
+Plugins::
+===
+
+Manage jenkins --->plugins
+
+
+Availabe plugins 
+Installed plugins
+
+![image](https://github.com/user-attachments/assets/b1f32f0a-68e2-4bc1-b521-7f67f9bd9956)

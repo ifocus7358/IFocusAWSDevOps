@@ -830,3 +830,14 @@ Availabe plugins
 Installed plugins
 
 ![image](https://github.com/user-attachments/assets/b1f32f0a-68e2-4bc1-b521-7f67f9bd9956)
+
+
+if you want installe new plugin ::
+
+Go to Availabe plugins and erach plugins name
+
+![image](https://github.com/user-attachments/assets/5e17685a-430d-437a-99b3-a29370b374cc)
+
+Once insatlled the plugin we will get the UI(User Interface) and it will not installed any software just get the UI
+
+

@@ -995,10 +995,37 @@ Execute the Jobs in Parallel::
 
 2.Don’t do 2 projects build parallel  this is real time scenario but we can do parallel builds as well one job
 
->Execute concurrent builds if necessary
+Jenkins build parallel setup
+Go job ---> configure ----> Generall ---> Execute concurrent builds if necessary
+
 
 
 ![image](https://github.com/user-attachments/assets/909edd87-548d-4ded-a862-29cf850fac05)
+
+
+Here 5 builds execute parallel ,I kept executor is 5 this is same machine 
+
+![image](https://github.com/user-attachments/assets/a840a224-5cbb-43cc-92c1-d135db4ce00f)
+
+I want to show test results ::
+=================================
+
+
+>ls target 
+
+Post build action stage
+
+Select archive the artifact
+--target/*.jar
+
+Junit test results::
+--target/surefire-reports/*.xml
+
+
+See test results & antifactory ::
+===================================
+
+![image](https://github.com/user-attachments/assets/2711b453-072e-40d2-9596-afce8f586310)
 
 
 3.For every company will do sequence build on one project this is recommended approach

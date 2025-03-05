@@ -965,4 +965,69 @@ Max # of builds to keep ==give 10
 ![image](https://github.com/user-attachments/assets/58a96f10-ff53-4306-a5a7-dd20b42e1c9f)
 
 
+5/03/2025::
+============
+
+Post build Action i want to published artifacts & test results
+
+![image](https://github.com/user-attachments/assets/fcd3ea28-a352-431f-8e1b-86758787fe7a)
+
+I'm going to created one free style job and configured Post-build Actions
+
+In post build Action select the option Archive the artifacts
+
+>target/*.war
+
+![image](https://github.com/user-attachments/assets/39dcf26d-74ee-4c7f-bc28-bb7f6116fedb)
+
+In post build Action select the option Publish JUnit test result report for to published the test results
+
+>target/surefire-reports/*.xml
+
+
+![image](https://github.com/user-attachments/assets/e04f371d-b684-406b-9210-50fb74b6ea79)
+
+Execute the Jobs in Parallel::
+==============================
+
+
+1.By Default execute the Jenkins build jobs are sequence way,one by one 
+
+2.Don’t do 2 projects build parallel  this is real time scenario but we can do parallel builds as well one job
+
+>Execute concurrent builds if necessary
+
+
+![image](https://github.com/user-attachments/assets/909edd87-548d-4ded-a862-29cf850fac05)
+
+
+3.For every company will do sequence build on one project this is recommended approach
+
+Please read and understand the below important point for parallel execuion job::
+==================================================================================
+
+When this option is checked, multiple builds of this project may be executed in parallel.
+By default, only a single build of a project is executed at a time — any other requests to start building that project will remain in the build queue until the first build is complete.
+This is a safe default, as projects can often require exclusive access to certain resources, such as a database, or a piece of hardware.
+
+But with this option enabled, if there are enough build executors available that can handle this project, then multiple builds of this project will take place in parallel. If there are not enough available executors at any point, any further build requests will be held in the build queue as normal.
+
+Enabling concurrent builds is useful for projects that execute lengthy test suites, as it allows each build to contain a smaller number of changes, while the total turnaround time decreases as subsequent builds do not need to wait for previous test runs to complete.
+This feature is also useful for parameterized projects, whose individual build executions — depending on the parameters used — can be completely independent from one another.
+
+
+I want to build the project using  Execute shell::
+====================================================
+at Build step select the Execute shell
+
+![image](https://github.com/user-attachments/assets/8038641b-162e-4b15-8790-7376d73b9324)
+
+>git clone https://github.com/parasa7358/spring-petclinic.git
+
+>cd spring-petclinic
+
+>mvn install
+
+
+
 

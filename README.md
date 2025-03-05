@@ -877,3 +877,91 @@ Select optiions String parameter or choise parameter or boolean parameter you ca
 ![image](https://github.com/user-attachments/assets/210ae086-fecf-42b2-9322-966b85431d18)
 
 select string parameter
+
+![image](https://github.com/user-attachments/assets/aa0b6706-bda8-4de8-a094-d14e4955fc34)
+
+Select Choise Parameter
+
+![image](https://github.com/user-attachments/assets/48baed03-fe9c-482b-870b-ba4126eb2b4a)
+
+choise parameter
+
+![image](https://github.com/user-attachments/assets/a50a06a9-5063-4f12-8d10-0f44ee473f46)
+
+Click Save
+
+You Can observed this project is parameterized 
+
+![image](https://github.com/user-attachments/assets/05be584b-bd82-4f00-89c7-6358a4ca5ca4)
+
+Click Build with parameter
+
+![image](https://github.com/user-attachments/assets/a7317486-0b18-4e78-9a64-4113f712a757)
+
+select deployment environment
+
+![image](https://github.com/user-attachments/assets/b12a618f-a8da-4c8f-b19c-7b92af2431da)
+
+select which versioj you want to deployment like tis you can configured real time parameterized project in jenkins
+
+![image](https://github.com/user-attachments/assets/33a52ced-4fa7-4b69-a0f9-a82fe436cdfd)
+
+Click Build
+
+![image](https://github.com/user-attachments/assets/7acf8c06-b734-4512-acf7-86ed9fd9053a)
+
+![image](https://github.com/user-attachments/assets/1cec807a-76cc-4446-a589-4767563b90eb)
+
+I want Build a 3 projects ::
+===========================
+
+![image](https://github.com/user-attachments/assets/a3c32e99-2361-4462-a7bc-dfa05310191d)
+
+Project-A,Projec -B,Projec - C 
+
+Projec A is  (Downstream project is ---Projec B)
+
+Projec B is (UP Stream project for ----Projec A)
+
+Projec C is (downstream project --Projec B)
+
+i created 3 free style project in jenkins 
+
+Project-A ::
+==============
+
+Github URL::: https://github.com/parasa7358/spring-petclinic.git
+
+![image](https://github.com/user-attachments/assets/e8073061-b815-4945-bd7f-c20b3a6576e2)
+
+Post Build Action , select the option Build Other Project  Project-B
+
+![image](https://github.com/user-attachments/assets/ef75f777-c273-4255-b063-f9853072dfcb)
+
+Project -B ::
+=============
+
+Github URL:::https://github.com/parasa7358/onlinebookstore.git
+
+![image](https://github.com/user-attachments/assets/2ee62e92-e677-4717-93be-77d6dd1ecbf9)
+
+Post Build Action , select the option Build Other Project Project-C
+
+![image](https://github.com/user-attachments/assets/ec7cfc18-002b-4dc3-8438-a75b12b9a438)
+
+
+Project-C::
+============
+
+
+Github URL:::https://github.com/parasa7358/game-of-life.git
+
+Discard old builds:::
+====================
+
+Days to keep builds---->give 15
+Max # of builds to keep ==give 10
+
+![image](https://github.com/user-attachments/assets/58a96f10-ff53-4306-a5a7-dd20b42e1c9f)
+
+

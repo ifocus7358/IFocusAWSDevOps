@@ -840,4 +840,40 @@ Go to Availabe plugins and erach plugins name
 
 Once insatlled the plugin we will get the UI(User Interface) and it will not installed any software just get the UI
 
+04/03/2025::
+=============
 
+crone job formate link
+
+https://crontab.guru/examples.html
+
+Parameterized Jenkins Jobs ::
+
+Run the same job with different inputs without modifying the configuration manually
+
+Go To New Item
+
+![image](https://github.com/user-attachments/assets/20b1237b-1681-4e77-ad8b-33ee8ac69b97)
+
+Enter Job Name, Free style project and click ok
+
+![image](https://github.com/user-attachments/assets/106bb57e-5466-4e1d-9ead-c977aaac60e7)
+
+
+Enter the description
+
+![image](https://github.com/user-attachments/assets/4944c35f-86db-42a4-8bb8-4b3d9987fd81)
+
+Select the option This project is parameterised
+
+![image](https://github.com/user-attachments/assets/4eeab439-3e45-4320-a7de-73360c28c3c3)
+
+Click Add Parameter
+
+![image](https://github.com/user-attachments/assets/3570dcc9-72a0-4034-8da3-1a70e0341fa7)
+
+Select optiions String parameter or choise parameter or boolean parameter you can select the ny options based on your requirement 
+
+![image](https://github.com/user-attachments/assets/210ae086-fecf-42b2-9322-966b85431d18)
+
+select string parameter

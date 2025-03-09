@@ -1245,9 +1245,56 @@ node {
   ==================================
 node: Represents a Jenkins agent where the pipeline will run.
 
+
+07/03/2025::
+===============
+
 Pipeline as Code::
 ==================
 Both declarative and scripted pipelines are stored as Jenkinsfiles, which you place in your source code repository. This allows you to version control your pipeline and keep it aligned with your application code.
+
+Declarative pipeline with Jenkinsfile::
+===============================
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone') {
+            steps {
+                git branch: 'main', url: 'git@github.com:parasa7358/spring-petclinic.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+        stage('Test Results Reports') {
+            steps {
+                junit 'target/surefire-reports/*.xml'
+            }
+        }
+        
+        stage('Artifacts') {
+            steps {
+                archiveArtifacts artifacts: 'target/*.war', followSymlinks: false
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    }
+}
+
 
 This pipeline:::
 
@@ -1268,11 +1315,57 @@ Script Path::: This path is Jenkinsfiles where we maintained in github source co
 
 ![image](https://github.com/user-attachments/assets/3b4783f0-c613-45d1-81a7-00712a79f5ad)
 
+
+Declarative pipeline with Jenkinsfile::
+===============================
+
+node {
+    agent any
+
+    stages {
+        stage('Clone') {
+            steps {
+                git branch: 'main', url: 'git@github.com:parasa7358/spring-petclinic.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+        stage('Test Results Reports') {
+            steps {
+                junit 'target/surefire-reports/*.xml'
+            }
+        }
+        
+        stage('Artifacts') {
+            steps {
+                archiveArtifacts artifacts: 'target/*.war', followSymlinks: false
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    }
+}
+
 github sourcecode jenkinsfile 
 
 ![image](https://github.com/user-attachments/assets/44f93ca7-1d95-4efb-afad-cc262de61dbe)
 
 
-07/03/2025::
-===============
+Create AWS Free tier Account::
+================================
+
+
+Please go throw the recorded video session 
 

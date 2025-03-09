@@ -1316,7 +1316,7 @@ Script Path::: This path is Jenkinsfiles where we maintained in github source co
 ![image](https://github.com/user-attachments/assets/3b4783f0-c613-45d1-81a7-00712a79f5ad)
 
 
-Declarative pipeline with Jenkinsfile::
+Scripted pipeline with Jenkinsfile::
 ===============================
 
 node {
@@ -1367,5 +1367,5 @@ Create AWS Free tier Account::
 ================================
 
 
-Please go throw the recorded video session 
+Please go throw the recorded video session and follow the steps to create the free tier AWS account
 

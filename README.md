@@ -1049,12 +1049,230 @@ at Build step select the Execute shell
 
 ![image](https://github.com/user-attachments/assets/8038641b-162e-4b15-8790-7376d73b9324)
 
->git clone https://github.com/parasa7358/spring-petclinic.git
-
->cd spring-petclinic
-
->mvn install
 
 
+> git clone https://github.com/parasa7358/spring-petclinic.git
 
+> cd spring-petclinic
+
+> mvn install
+
+
+06/03/2025::
+==============
+
+Pipelines Introduction:::
+
+A Jenkins pipeline is a series of automated steps or stages that define the process of continuous integration/continuous delivery (CI/CD) for your code. Jenkins, being a popular open-source automation server, uses pipelines to automate tasks like building, testing, and deploying code.
+
+There are two types of Jenkins pipelines:
+
+1. Declarative Pipeline
+2. Scripted Pipeline
+
+1. Declarative Pipeline::
+The declarative pipeline syntax is simpler and more structured. It's the recommended style for most users because it's easy to read and maintain
+
+Here's an example of a simple declarative pipeline:
+
+pipeline{
+
+agent any
+
+stages{
+
+Stage ('Clone'){
+
+steps{
+
+// write code
+}
+}
+
+Stage ('Build'){
+steps{
+
+// write code
+}
+// write code
+
+}
+
+Stage ('Test'){
+
+steps{
+
+// write code
+}
+// write code
+
+}
+Stage ('Execute test casea and get the results'){
+
+steps{
+
+// write code
+}
+// write code
+
+}
+
+Stage ('Generated Artifact'){
+
+steps{
+
+// write code
+}
+// write code
+
+}
+
+Stage ('Deploy'){
+
+steps{
+
+// write code
+}
+// write code
+
+}
+
+// write code
+
+}
+
+}
+
+Please try to create one pipeline job in jenkinsfile and execute the below Declarative pipeline example:;
+
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone') {
+            steps {
+                git branch: 'feature/2025.02.27', url: 'git@github.com:parasa7358/spring-petclinic.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+        stage('Test Results Reports') {
+            steps {
+                junit 'target/surefire-reports/*.xml'
+            }
+        }
+        
+        stage('Artifacts') {
+            steps {
+                archiveArtifacts artifacts: 'target/*.war', followSymlinks: false
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    }
+}
+
+
+
+Key elements in the declarative pipeline:::
+======================================
+pipeline: This is the top-level structure.
+agent: Specifies where the pipeline will run, such as on any available agent, a specific node, or a Docker container.
+stages: Defines the different steps or stages in the pipeline (e.g., Build, Test, Deploy).
+steps: Commands to be executed in each stage.
+
+
+2. Scripted Pipeline::
+   ==============
+
+The scripted pipeline offers more flexibility, but it is less structured and can be harder to maintain. It uses Groovy syntax to define the pipeline.
+
+Here's an example of a scripted pipeline:
+
+node {
+    try {
+        stage('Build') {
+            echo 'Building the application...'
+            // Your build commands here
+        }
+        
+        stage('Test') {
+            echo 'Running tests...'
+            // Your test commands here
+        }
+
+        stage('Deploy') {
+            echo 'Deploying the application...'
+            // Your deploy commands here
+        }
+
+
+        Please try to create one new jenkins pipeline job and execute below script for Scripted pipeline examples
+
+        node {
+        stage('Clone') {
+                git branch: 'master', url: 'https://github.com/parasa7358/onlinebookstore.git'
+			}
+			
+			 stage('Build') {
+        
+                sh 'mvn package'
+        
+			}
+			stage('Test') {
+        
+                sh 'mvn test'
+        
+			}
+        }
+
+
+
+  Key differences in a scripted pipeline:::
+  ==================================
+node: Represents a Jenkins agent where the pipeline will run.
+
+Pipeline as Code::
+==================
+Both declarative and scripted pipelines are stored as Jenkinsfiles, which you place in your source code repository. This allows you to version control your pipeline and keep it aligned with your application code.
+
+This pipeline:::
+
+1 Checks out the source code from your Git repository.
+2. Builds the project using Maven.
+3.Runs unit tests.
+4.Deploys the application using a custom script.
+
+JOb creation::
+
+![image](https://github.com/user-attachments/assets/dacaf03a-5557-44ce-88ba-0b230ed061cb)
+
+Branches to build
+
+![image](https://github.com/user-attachments/assets/64065ba7-534e-4771-a667-00d5f64e5a4b)
+
+Script Path::: This path is Jenkinsfiles where we maintained in github source code level
+
+![image](https://github.com/user-attachments/assets/3b4783f0-c613-45d1-81a7-00712a79f5ad)
+
+github sourcecode jenkinsfile 
+
+![image](https://github.com/user-attachments/assets/44f93ca7-1d95-4efb-afad-cc262de61dbe)
+
+
+07/03/2025::
+===============
 

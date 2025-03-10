@@ -1369,3 +1369,111 @@ Create AWS Free tier Account::
 
 Please go throw the recorded video session and follow the steps to create the free tier AWS account
 
+
+10/03/2025::
+==============
+
+Tomcat Web Server: Introduction
+===============
+
+Apache Tomcat is an open-source web server and servlet container developed by the Apache Software Foundation. It is primarily used to serve Java applications and is one of the most popular servlet containers in the world.
+
+Tomcat is an essential tool for anyone working with Java web applications. It provides a simple, reliable platform for deploying and managing Java Servlets and JSPs and is widely used in both development and production environments. Its ease of use, combined with powerful features and flexibility, makes it an ideal choice for many developers working on Java-based web applications.
+
+Apache Tomcat is an open-source web server and servlet container that is primarily used to serve Java-based web applications. It implements several Java EE (Enterprise Edition) specifications, such as Java Servlet, JavaServer Pages (JSP), and WebSocket, among others. Tomcat is often used to run Java applications on the web because it's lightweight, easy to configure, and widely supported.
+
+Here are some key points about Tomcat:
+
+1. **Servlet Container**: Tomcat is a servlet container, meaning it manages the lifecycle of Java Servlets, which are small Java programs that run on a web server.
+  
+2. **JSP Support**: Tomcat also supports JavaServer Pages (JSP), a technology that allows for embedding Java code within HTML pages.
+
+3. **Configuration**: It’s highly configurable through XML files, like `server.xml` for server settings, `web.xml` for application settings, and others.
+
+4. **Lightweight**: Unlike full-fledged application servers like WildFly (formerly JBoss) or GlassFish, Tomcat is primarily a servlet and JSP container, which makes it lighter and easier to deploy for simpler Java web applications.
+
+5. **Performance**: It’s known for good performance in handling static content, making it a popular choice for Java web developers.
+
+
+Integrate Jenkins with Tomcat::
+==============================
+
+Integrating Tomcat with Jenkins is a common use case for automating the deployment of Java-based web applications. Jenkins can be set up to deploy a web application to a Tomcat server whenever a new build is triggered.
+
+Prerequisites:
+
+Apache Tomcat should be installed and running on your server.
+Jenkins should be installed and running.
+
+Steps to integrate Jenkins with Tomcat:
+
+1. Install the "Deploy to Container" Plugin in Jenkins:
+The easiest way to deploy to Tomcat from Jenkins is by using the Deploy to Container plugin. This plugin allows Jenkins to deploy WAR files to a Tomcat server.
+
+Go to your Jenkins dashboard.
+Click on Manage Jenkins > Manage Plugins.
+In the Available tab, search for Deploy to Container Plugin and install it.
+Once installed, restart Jenkins to apply the plugin.
+
+2. Configure Tomcat Server in Jenkins:
+Now you need to tell Jenkins where your Tomcat server is running.
+
+In Jenkins, go to Manage Jenkins > Configure System.
+Scroll down to the Deploy to container section.
+Click Add Tomcat Server.
+
+Provide the necessary information:
+Name: Give the Tomcat server a name (Tomcat9).
+URL: The URL of your Tomcat server (e.g., http://localhost:8080).
+Username: The username for Tomcat's manager app (usually admin).
+Password: The password for that username (set in Tomcat's tomcat-users.xml).
+Save the configuration.
+
+3. Configure Tomcat’s tomcat-users.xml:
+Make sure Tomcat is set up to allow Jenkins to deploy the application by editing the tomcat-users.xml file.
+
+https://stackoverflow.com/questions/7763560/401-unauthorized-error-while-logging-in-manager-app-of-tomcat
+
+
+<tomcat-users>  
+  <role rolename="manager-gui"/>
+  <role rolename="manager-script"/>
+  <role rolename="manager-jmx"/>
+  <role rolename="manager-status"/>
+  <role rolename="admin-gui"/>
+  <role rolename="admin-script"/>
+  <user username="admin" password="admin" roles="manager-gui, manager-script, manager-jmx, manager-status, admin-gui, admin-script"/>
+</tomcat-users>
+
+Restart Tomcat to apply the changes.
+
+4. Create a Jenkins Job to Build and Deploy the Application:
+Next, you need to create a Jenkins job that will build your web application (e.g., a WAR file) and deploy it to Tomcat.
+
+From the Jenkins dashboard, click New Item.
+
+Select Freestyle Project, give it a name, and click OK.
+
+In the job configuration, go to the Build section and configure your build step, such as building a Maven project For Maven, you can use:
+
+> mvn clean install
+
+In the Post-build Actions section, add Deploy war/ear to a container.
+
+In the WAR/EAR files field, provide the path to your WAR file (e.g., target/my-app.war).
+In the Container field, choose the Tomcat server you configured earlier.
+Set the Context Path (e.g., IfocusAWSDevOpsTraining), which is the URL path where the application will be accessible on Tomcat.
+If you want Jenkins to deploy automatically after every successful build, check the option Deploy after every successful build.
+Save the job.
+
+5. Trigger the Build and Deployment:
+Go to the Jenkins job you just created and click Build Now to trigger a build.
+After the build completes, Jenkins should deploy the WAR file to your Tomcat server.
+
+You can access your application by going to http://<tomcat_host>:<tomcat_port>/<context_path>
+
+example::  http://localhost:8080/IfocusApplication/
+
+POLL SCM:: * * * * * (every minute automatic build & deployment happend when new commits happend in github)
+This setup will allow Jenkins to automatically build and deploy your Java web application to Tomcat with each new build
+

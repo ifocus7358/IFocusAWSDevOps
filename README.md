@@ -1434,6 +1434,12 @@ Make sure Tomcat is set up to allow Jenkins to deploy the application by editing
 
 https://stackoverflow.com/questions/7763560/401-unauthorized-error-while-logging-in-manager-app-of-tomcat
 
+tomcat-users.xml file::
+=========================
+
+![image](https://github.com/user-attachments/assets/61a0b6ae-1e6c-47d0-8852-b226d65f38a4)
+
+
 
 <tomcat-users>  
   <role rolename="manager-gui"/>
@@ -1444,6 +1450,9 @@ https://stackoverflow.com/questions/7763560/401-unauthorized-error-while-logging
   <role rolename="admin-script"/>
   <user username="admin" password="admin" roles="manager-gui, manager-script, manager-jmx, manager-status, admin-gui, admin-script"/>
 </tomcat-users>
+
+
+
 
 Restart Tomcat to apply the changes.
 

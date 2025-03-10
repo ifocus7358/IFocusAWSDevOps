@@ -1441,7 +1441,6 @@ tomcat-users.xml file::
 
 
 
-<tomcat-users>  
   <role rolename="manager-gui"/>
   <role rolename="manager-script"/>
   <role rolename="manager-jmx"/>
@@ -1449,7 +1448,6 @@ tomcat-users.xml file::
   <role rolename="admin-gui"/>
   <role rolename="admin-script"/>
   <user username="admin" password="admin" roles="manager-gui, manager-script, manager-jmx, manager-status, admin-gui, admin-script"/>
-</tomcat-users>
 
 
 

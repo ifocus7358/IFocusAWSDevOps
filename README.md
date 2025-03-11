@@ -1398,6 +1398,11 @@ Here are some key points about Tomcat:
 Integrate Jenkins with Tomcat::
 ==============================
 
+
+
+![image](https://github.com/user-attachments/assets/1d3919a7-585b-4737-9d60-95207ca08ad8)
+
+
 Integrating Tomcat with Jenkins is a common use case for automating the deployment of Java-based web applications. Jenkins can be set up to deploy a web application to a Tomcat server whenever a new build is triggered.
 
 Prerequisites:

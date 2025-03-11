@@ -1489,3 +1489,111 @@ example::  http://localhost:8080/IfocusApplication/
 POLL SCM:: * * * * * (every minute automatic build & deployment happend when new commits happend in github)
 This setup will allow Jenkins to automatically build and deploy your Java web application to Tomcat with each new build
 
+
+
+11/03/2025::
+=================
+
+Deploy Onlinebookstore/spring-petclinic applications to target server (Tomcat)::
+=====================================================================================================================
+
+please create one new pipeline job
+
+Provide the Description
+
+![image](https://github.com/user-attachments/assets/458b8076-ebce-4ac0-932e-64ee5a6e460b)
+
+Enabled POLL SCM
+
+![image](https://github.com/user-attachments/assets/5b5ae6d9-987a-4c54-9450-c3a89497be29)
+
+In Pipeline Section write groovy script using Declarative style 
+
+
+![image](https://github.com/user-attachments/assets/5d624b7b-9224-4d20-863f-0f3e4671916e)
+
+Script::
+=======
+
+pipeline
+{
+    agent any
+
+    tools{
+
+        maven 'maven'
+    }
+
+stages{
+stage('Git checkout'){
+
+    steps{
+
+        git branch: 'main' url: 'https://github.com/parasa7358/Petclinic.git'
+
+    }
+}
+
+stage('clean and install'){
+
+    steps{
+
+      sh 'mvn clean install'
+
+    }
+}
+
+stage('Package'){
+
+    steps{
+
+      sh 'mvn package'
+
+    }
+}
+
+stage('Archive the Artifacts'){
+
+    steps{
+
+      sh 'mvn clean install'
+    }
+    post{
+        success{
+
+            archiveArtifacts artifacts: '**target/*.war'
+        }
+    }
+
+    }
+
+
+stage('Test Cases'){
+
+    steps{
+
+      sh 'mvn test'
+
+    }
+}
+
+
+stage('Deploy to tomcat server'){
+
+    steps{
+
+      deploy adapters: [tomcat9(credentialsId: 'tomcat9credentials', path: '', url: 'http://localhost:8080/')], contextPath: 'Ifocus Solutions Pvt Ltd', war: '**/*.war'
+
+    }
+}
+
+}
+}
+
+
+Run the job
+
+
+![image](https://github.com/user-attachments/assets/f240a720-41dd-4bc0-955d-a247b1cf8918)
+
+![image](https://github.com/user-attachments/assets/369955cf-0f1c-4ae1-bae3-3870edc0e282)

@@ -1890,3 +1890,27 @@ After completed the CI/CD
 ![image](https://github.com/user-attachments/assets/9da10f2f-6114-4fbb-ac59-d052298c576c)
 
 ![image](https://github.com/user-attachments/assets/fd461a17-e1f9-473c-aaca-2073c0e193c6)
+
+
+7. Running the Pipeline
+Once the pipeline is configured, Jenkins will execute the SonarQube analysis during the build process. After the build completes, you can view the analysis results in your SonarQube dashboard.
+
+8. View SonarQube Reports
+After the analysis is complete, you can view detailed reports about code quality, such as:
+
+https://dzone.com/articles/getting-tsql-project-scanned-with-sonarqube
+
+![image](https://github.com/user-attachments/assets/ea965310-c76b-4ea1-9a12-de51d2573668)
+
+![image](https://github.com/user-attachments/assets/2b006ce0-f207-4655-ac8f-08925271580d)
+
+![image](https://github.com/user-attachments/assets/7a0f8a82-5843-44e1-b7b5-b5e4a387db9c)
+
+
+
+Code coverage
+Code smells
+Bugs
+Vulnerabilities
+Duplications
+These reports will be available in the SonarQube dashboard for your project.

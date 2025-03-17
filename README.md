@@ -1914,3 +1914,282 @@ Bugs
 Vulnerabilities
 Duplications
 These reports will be available in the SonarQube dashboard for your project.
+
+
+14/03/2025::
+================
+
+Jfrog Artifactory Overview::
+======================
+
+JFrog Artifactory is a universal artifact repository manager that serves as a central hub for storing, managing, and distributing software artifacts, binaries, packages, and other assets throughout the software development lifecycle, improving automation, and ensuring release integrity.
+
+Artifact Repository Management:
+
+Allows for storing binaries and artifacts (e.g., libraries, packages, Docker images) in a centralized location.
+Supports all major package types (e.g., Maven, Gradle, npm, NuGet, RubyGems, etc.).
+Version Control:
+
+Helps in managing versions of your artifacts and ensures the correct version is used during builds and deployments.
+Integration with CI/CD:
+
+Integrates seamlessly with CI/CD tools like Jenkins, Bamboo, GitLab CI, and others.
+Enables automated publishing of artifacts as part of your continuous integration pipeline.
+Access Control & Security:
+
+Provides fine-grained access control and permissions for users and groups.
+Supports user authentication, security, and audit trails to ensure compliance and secure artifact management.
+Replication:
+
+Allows you to replicate artifacts across multiple Artifactory instances, ensuring high availability and disaster recovery capabilities.
+Remote Repositories:
+
+Artifactory can proxy remote repositories, allowing you to cache and fetch external dependencies without re-downloading them each time.
+Promotion & Release Management:
+
+You can "promote" artifacts from one repository to another (e.g., from a development repository to a production repository), allowing for better control over releases.
+Multi-Platform Support:
+
+Artifactory supports multiple programming languages and platforms, making it a universal solution for managing software dependencies and releases.
+
+17/03/2025::
+=================
+
+Integarte Jfrog with Jenkins::
+===========================
+
+<img width="846" alt="Jfrog" src="https://github.com/user-attachments/assets/5d07c387-99b9-43e0-97c6-b3b8e008da31" />
+
+First Step:: 
+https://jfrog.com/download-jfrog-platform/  ---download url
+
+![image](https://github.com/user-attachments/assets/6ef7f0ee-d89e-4c84-8764-17bcde0c18b3)
+
+previous versions link
+
+https://jfrog.com/download-legacy/?product=artifactory&version=7.104.12
+
+All zip version and search 6.12.1 OSS version
+
+https://releases.jfrog.io/artifactory/bintray-artifactory/
+
+
+Jfrog Script::
+===============
+
+stage ('Artifactory Server'){
+            steps {
+               rtServer (
+                 id: "Artifactory",
+                 url: 'http://localhost:8081/artifactory',
+                 username: 'admin',
+                  password: 'password',
+                  bypassProxy: true,
+                   timeout: 300
+                        )
+            }
+        }
+        stage('Upload'){
+            steps{
+                rtUpload (
+                 serverId:"Artifactory" ,
+                  spec: '''{
+                   "files": [
+                      {
+                      "pattern": "*.war",
+                      "target": "ifocus-solutions-pvt-ltd"
+                      }
+                            ]
+                           }''',
+                        )
+            }
+        }
+        stage ('Publish build info') {
+            steps {
+                rtPublishBuildInfo (
+                    serverId: "Artifactory"
+                )
+            }
+        }
+
+ installed plugin for artifactory (Jfrog)::
+ =====================================
+
+
+![image](https://github.com/user-attachments/assets/542a6be0-9059-4935-9658-81ce27634337)
+
+After installed Artifactory plugin 
+
+Go to Manage Jenkins--System configuration find JFROG
+
+ ![image](https://github.com/user-attachments/assets/5ddbd986-aaee-478b-8a03-e117f53a7b3a)
+
+Click JFrog Platform Instances
+
+![image](https://github.com/user-attachments/assets/c176ad14-5982-4ea3-b960-468d00f851c7)
+
+For user name and password
+Go to Jfrogadmin-Securityusers
+Default Jfrog U/P----admin/password
+
+![image](https://github.com/user-attachments/assets/83204f3d-bf7b-4bd5-b616-61eaf03ae216)
+
+![image](https://github.com/user-attachments/assets/2af4f08d-5778-4517-8b90-43037eb6ecce)
+
+![image](https://github.com/user-attachments/assets/c104f1c1-6cd0-4911-8eef-b9243a2dd41f)
+
+
+I need to setup target in Jfrog
+
+ifocus-solutions-pvt-ltd
+
+click Local repository
+
+![image](https://github.com/user-attachments/assets/accda4b3-8ff1-412b-9dfb-c790ff8d9757)
+
+
+Select maven
+
+![image](https://github.com/user-attachments/assets/a711233f-8298-4fb9-84f7-3acd19d4e73c)
+
+Repository key  :::: ifocus-solutions-pvt-ltd
+
+![image](https://github.com/user-attachments/assets/97c49959-7963-475d-8efb-693952d973ea)
+
+Click save and finish
+
+![image](https://github.com/user-attachments/assets/a17b2e49-1e1a-408a-ad16-64cb6bd734b4)
+
+Go to artifacts and check repository is created with name -ifocus-solutions-pvt-ltd
+
+![image](https://github.com/user-attachments/assets/af618d7f-ba98-4b2f-8bd2-86fb7928bdae)
+
+CI/CD all tools ans stages script:: create new job in jenmins and execute below script 
+=====================================
+
+
+pipeline
+{
+    agent any
+
+    tools{
+
+        maven 'maven'
+    }
+
+stages{
+stage('Git checkout'){
+
+    steps{
+
+        git branch: 'main', url: 'https://github.com/parasa7358/Petclinic.git'
+
+    }
+}
+
+stage('clean and install'){
+
+    steps{
+
+      sh 'mvn clean install'
+
+    }
+}
+
+stage('Package'){
+
+    steps{
+
+      sh 'mvn package'
+
+    }
+}
+
+stage('Archive the Artifacts'){
+
+    steps{
+
+      sh 'mvn clean install'
+    }
+    post{
+        success{
+
+            archiveArtifacts artifacts: '**target/*.war'
+        }
+    }
+
+    }
+
+
+stage('Test Cases'){
+
+    steps{
+
+      sh 'mvn test'
+
+    }
+}
+
+stage('Sonarqube Analysis'){
+
+    steps{
+
+      sh 'mvn clean package'
+
+    sh '''mvn sonar:sonar \
+  -Dsonar.projectKey='spring-petclinic' \
+  -Dsonar.projectName='spring-petclinic' \
+  -Dsonar.host.url='http://localhost:9000' \
+  -Dsonar.token=sqp_8d74d659dbf3d3bf2924a0d24104f5ddba914fac'''
+
+    }
+}
+stage ('Artifactory Server'){
+            steps {
+               rtServer (
+                 id: "Artifactory",
+                 url: 'http://localhost:8081/artifactory',
+                 username: 'admin',
+                  password: 'password',
+                  bypassProxy: true,
+                   timeout: 300
+                        )
+            }
+        }
+        stage('Upload'){
+            steps{
+                rtUpload (
+                 serverId:"Artifactory" ,
+                  spec: '''{
+                   "files": [
+                      {
+                      "pattern": "*.war",
+                      "target": "ifocus-solutions-pvt-ltd"
+                      }
+                            ]
+                           }''',
+                        )
+            }
+        }
+        stage ('Publish build info') {
+            steps {
+                rtPublishBuildInfo (
+                    serverId: "Artifactory"
+                )
+            }
+        }
+
+stage('Deploy to tomcat server'){
+
+    steps{
+
+      deploy adapters: [tomcat9(credentialsId: 'tomcat9credentials', path: '', url: 'http://localhost:8080/')], contextPath: 'Ifocus Solutions Pvt Ltd', war: '**/*.war'
+
+    }
+}
+
+}
+}
+
+
+

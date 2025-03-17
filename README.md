@@ -2064,7 +2064,7 @@ Go to artifacts and check repository is created with name -ifocus-solutions-pvt-
 
 ![image](https://github.com/user-attachments/assets/af618d7f-ba98-4b2f-8bd2-86fb7928bdae)
 
-CI/CD all tools ans stages script:: create new job in jenmins and execute below script 
+CI/CD all tools ans stages script:: create new job in jenkins and execute below script 
 =====================================
 
 

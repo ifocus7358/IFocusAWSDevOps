@@ -2193,3 +2193,119 @@ stage('Deploy to tomcat server'){
 
 
 
+18/03/2025::
+===============
+
+AWS (Amazon Web Services)::
+====================
+
+Amazon Web Services (AWS) is a comprehensive and widely adopted cloud platform offered by Amazon. It provides a broad set of services to help organizations and individuals build and scale applications, manage data, and process workloads in the cloud. AWS is designed to provide flexible, scalable, and cost-effective solutions for computing, storage, networking, machine learning, and much more.
+
+AWS ---Amazon web services
+
+compute services::
+Amazon EC2 (Elastic Compute Cloud): Provides scalable virtual servers to run applications.
+AWS Lambda: Lets you run code without provisioning or managing servers. It automatically scales based on usage.
+
+Storage services::
+Amazon S3 (Simple Storage Service): Object storage for storing and retrieving large amounts of data.
+Amazon EBS (Elastic Block Store): Persistent block-level storage for EC2 instances.
+
+Database::
+Amazon RDS (Relational Database Service): Managed relational database service supporting multiple database engines (e.g., MySQL, PostgreSQL, MariaDB, etc.).
+Amazon DynamoDB: A managed NoSQL database service.
+Amazon Aurora: A high-performance relational database engine compatible with MySQL and PostgreSQL.
+
+Network services::
+Amazon VPC (Virtual Private Cloud): Lets you create isolated networks within AWS for secure connections.
+
+Security ::
+
+AWS IAM (Identity and Access Management): Controls user access and permissions for AWS resources.
+AWS KMS (Key Management Service): Managed service for creating and controlling encryption keys.
+Security groups ---inbound, outbould roles
+
+
+Containers & kuberneties::
+ECS  ---elastic containers servcies
+EKS  ----estastic kuberneties services
+AKS  ---Azure kuberneties services
+
+Cloud watch --Metrics Monitoring
+
+CloudWatch Metrics allows you to track the performance and utilization of AWS resources such as EC2 instances, RDS databases, Lambda functions, S3 buckets, and much more.
+These metrics include CPU utilization, disk activity, network traffic, and others. You can create custom metrics for your applications or services as well.
+
+cloud trail ---Security Monitoring:
+
+Use CloudTrail logs to detect unauthorized access or activity in your AWS environment. You can track changes in security settings, unauthorized API calls, or unexpected configuration changes.
+
+Developer Tools::
+AWS CodeCommit: Source control service for managing your code repositories.
+AWS CodeDeploy: Automates code deployments to EC2 instances and Lambda.
+AWS CodePipeline: Continuous integration and continuous delivery (CI/CD) service for automating the release pipeline.
+
+AWS EC2 ::
+===========
+Amazon Elastic Compute Cloud (Amazon EC2) is one of the core services provided by Amazon Web Services (AWS)
+
+Wide Variety of Instance Types:
+
+EC2 instances are grouped into families based on the type of workload they are optimized for. Some common instance families include:
+General Purpose: e.g., t3, m5 instances (balanced CPU, memory, and networking).
+Compute Optimized: e.g., c5 instances (great for high-performance computing tasks).
+Memory Optimized: e.g., r5, x1e instances (designed for high-memory workloads like databases).
+
+create EC2 Ubuntu Linux Machine in AWS::
+==================================
+
+Go to AWS ans Search EC2
+
+![image](https://github.com/user-attachments/assets/32cf433a-97b3-444f-9231-1c4aa1da6f79)
+
+Click EC2
+
+![image](https://github.com/user-attachments/assets/f54992d2-7d2b-4a1c-8395-ba5aee7d5899)
+
+Go to instances at left side bar
+
+![image](https://github.com/user-attachments/assets/fcaee5fc-c31a-40cd-a7da-0255afef4373)
+
+Click Launch Instances, EC2  ---> Instances  -----> Launch an instance
+
+![image](https://github.com/user-attachments/assets/9b6128c5-cf0e-48ee-bc11-93852cc3e166)
+
+Select Ubuntu
+
+![image](https://github.com/user-attachments/assets/f610aae5-e7a9-43f6-af7e-e16b6ce9becb)
+
+Select Amazon Machine Image (AMI)
+
+![image](https://github.com/user-attachments/assets/2e5e91a6-cd80-445b-9932-b9d760475be7)
+
+
+select Instance type,t2 medium
+
+![image](https://github.com/user-attachments/assets/47d6a619-cbe2-41d4-b2ca-40ae44988efb)
+
+
+Create Create new key pair and provide key pair name
+
+![image](https://github.com/user-attachments/assets/1526a72d-ba98-45be-8998-2d67788c73ef)
+
+click create pair
+
+![image](https://github.com/user-attachments/assets/66a6f77c-36b3-49d3-87a5-abe0358a3c3b)
+
+click launch instance
+
+![image](https://github.com/user-attachments/assets/dca82f59-824d-4cf2-9bf2-ffe81948993c)
+
+instance will be created
+
+![image](https://github.com/user-attachments/assets/ed110a9c-d118-4a08-b678-a3cf945ef5c7)
+
+
+
+![image](https://github.com/user-attachments/assets/38ccd3b2-71ce-4102-a047-db937ab13080)
+

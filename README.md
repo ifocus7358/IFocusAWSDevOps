@@ -2551,4 +2551,8 @@ Please observe below screenshot 2 job running different machines
 
 ![image](https://github.com/user-attachments/assets/94005ac8-cb37-4c97-ba0e-14adf7c71566)
 
+advantage of master & Node Integartion
 
+![image](https://github.com/user-attachments/assets/5551bbab-46b7-49ae-b6c2-093299d2ecb2)
+
+![image](https://github.com/user-attachments/assets/ac59dbc9-c012-44a0-ae98-0fbcc2d4e5d8)

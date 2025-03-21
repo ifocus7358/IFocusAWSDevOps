@@ -2488,3 +2488,67 @@ Add credentials
 >Host Key Verification Strategy
 ![image](https://github.com/user-attachments/assets/a926aed1-85d6-42e1-804f-da5df9792eed)
 
+
+20/03/2025::
+==============
+
+
+Master Node Configuration::
+>got to manage Jenkins
+>manage Nodes
+>click new node
+Remote root directory
+
+![image](https://github.com/user-attachments/assets/190f9e24-2842-4462-9773-6c98c7980d77)
+
+![image](https://github.com/user-attachments/assets/10dcf0c4-7088-4071-a6e0-8f4729603029)
+ 
+ 
+
+Launch methods via ssh
+
+ ![image](https://github.com/user-attachments/assets/f25a3610-8d32-43ca-bde3-644426d37cb1)
+
+
+Add credentials ::
+
+option-1::
+
+this time please use credentials option SSH key with private key from node machine
+
+option::2 please use credentials with Username & password and let's try if you copy properly ,agent machine will conenct Successfully
+
+ ![image](https://github.com/user-attachments/assets/d54e7393-a5b9-4194-8f50-c206b02c39d1)
+
+ ![image](https://github.com/user-attachments/assets/2113f8d7-18d1-4e66-84ec-267c05fde9b5)
+
+>Host Key Verification Strategy
+
+ ![image](https://github.com/user-attachments/assets/58a7b48d-eab5-45a7-9661-1a72578ceda5)
+
+
+Agent successfully connected
+
+![image](https://github.com/user-attachments/assets/823523dc-fe3e-432c-b3d8-9c645483d30a)
+
+ 
+
+Execute Jenkins job using slave 
+Create one test slave job in Jenkins
+
+>select Restrict where this project can be run
+
+![image](https://github.com/user-attachments/assets/d6c206ac-06a1-4564-9351-7b35e4f4c521)
+
+
+>select Label Expression
+
+![image](https://github.com/user-attachments/assets/85b8897c-f6ec-4bd2-8bb9-3821251c20da)
+
+please create 2 job in jenkins master and setup 1 job in Node machine and 2nd job master machine, just trigger Build Now 
+
+Please observe below screenshot 2 job running different machines 
+
+![image](https://github.com/user-attachments/assets/94005ac8-cb37-4c97-ba0e-14adf7c71566)
+
+

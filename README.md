@@ -2860,4 +2860,12 @@ install git and jdk17 insatlled playbook::
       
         update_cache: yes
 
+Usefull Google links::
+===========
+
+https://docs.ansible.com/ansible/2.9/modules/list_of_all_modules.html
+https://docs.ansible.com/ansible/2.9/modules/apt_module.html#parameters
+https://www.geeksforgeeks.org/how-to-install-java-using-ansible-playbook/
+https://www.yamllint.com/
+https://www.geeksforgeeks.org/how-to-install-tomcat-using-ansible-playbook/
       

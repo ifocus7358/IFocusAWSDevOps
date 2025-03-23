@@ -2556,3 +2556,101 @@ advantage of master & Node Integartion
 ![image](https://github.com/user-attachments/assets/5551bbab-46b7-49ae-b6c2-093299d2ecb2)
 
 ![image](https://github.com/user-attachments/assets/ac59dbc9-c012-44a0-ae98-0fbcc2d4e5d8)
+
+
+
+
+21/03/2025::
+=============
+
+Ansible::
+============
+
+Ansible is an open-source automation tool used for configuration management, application deployment, task automation, and multi-node orchestration. It helps system administrators and DevOps professionals automate IT processes to improve efficiency, reduce errors, and simplify complex workflows.
+
+![image](https://github.com/user-attachments/assets/c3d2b092-091c-479c-8198-e98dee9ab09f)
+
+
+Key Features of Ansible:
+================
+Agentless: Ansible doesn't require any agents to be installed on the target machines. It uses SSH (or WinRM for Windows systems) to communicate with remote nodes.
+
+Declarative Syntax: Ansible uses YAML (Yet Another Markup Language) to define the tasks, which makes it easy to read and write.
+
+Idempotent: Ansible ensures that running the same playbook multiple times has the same effect, meaning it won’t reapply configurations if they’ve already been applied correctly.
+
+Modular: Ansible has a large number of pre-built modules that can be used to manage various systems, applications, and services.
+
+Playbooks: These are YAML files that describe the automation tasks you want to run. Playbooks are the heart of Ansible automation and define the "what" and "how" of your automation tasks.
+
+Inventory Management: Ansible can manage an inventory of systems, which is used to organize and target different sets of machines.
+
+Basic Components:
+==================
+Inventory: A list of hosts (machines) that Ansible will manage.
+
+Playbook: A YAML file that defines the tasks and roles to be applied to the inventory.
+
+Roles: A way to group related tasks and files together in a reusable manner.
+
+Modules: Pre-built commands that Ansible can run on target systems to accomplish specific tasks (e.g., file management, system configuration, etc.).
+
+3 linux ubuntu machines
+AWS_Ubuntu 24
+1)	AWS free tier 
+a)ACS   ----Ansible control server
+
+b)Node1
+c)Node2
+
+
+all these 3 machine ping to each other and see beow screenshots all 3 machines pings each other
+
+![image](https://github.com/user-attachments/assets/08def171-c690-4c4c-8f93-17bdf9734c73)
+
+
+Steps::
+======
+ubuntu@ip-172-31-28-207:~$ sudo -i
+root@ip-172-31-28-207:~# su ansible
+ansible@ip-172-31-28-207:/root$ cd ~
+ansible@ip-172-31-28-207:~$ cd /etc/ansible/
+ansible@ip-172-31-28-207:/etc/ansible$ ansible -m ping all
+[WARNING]: Platform linux on host localhost is using the discovered Python interpreter at /usr/bin/python3.12, but future installation of
+another Python interpreter could change the meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+localhost | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.12"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+[WARNING]: Platform linux on host ansiblenode2@172.31.30.200 is using the discovered Python interpreter at /usr/bin/python3.12, but future
+installation of another Python interpreter could change the meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+ansiblenode2@172.31.30.200 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.12"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+[WARNING]: Platform linux on host ansiblenode1@172.31.20.135 is using the discovered Python interpreter at /usr/bin/python3.12, but future
+installation of another Python interpreter could change the meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+ansiblenode1@172.31.20.135 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.12"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+ansible@ip-172-31-28-207:/etc/ansible$
+
+
+
+23/03/2025::
+============
+
+

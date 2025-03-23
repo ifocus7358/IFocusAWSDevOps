@@ -2653,4 +2653,175 @@ ansible@ip-172-31-28-207:/etc/ansible$
 23/03/2025::
 ============
 
+Ansible Playbooks Introduction::
+==========================
 
+Ansible playbooks are the heart of automation with Ansible. They are simple YAML (Yet Another Markup Language) files that define automation tasks in a structured, human-readable format. Playbooks allow you to automate configurations, deployments, and orchestration tasks in a clear and organized way.
+
+Key Concepts::
+==============
+
+Playbook: A playbook is a file that contains one or more "plays." Each play defines a set of tasks to be executed on a group of hosts. The playbook can be used for things like installing packages, managing users, configuring services, etc.
+
+Task: A task is an individual unit of work. Tasks define specific actions, such as installing a package, starting a service, or copying a file. Tasks are executed sequentially, in the order in which they are written in the playbook.
+
+Inventory: An inventory is a list of hosts that Ansible will manage. The inventory file defines which machines to target. An inventory can group hosts together (e.g., web servers, db servers) for easy management.
+
+Modules: Ansible provides numerous modules that are responsible for performing specific tasks like managing packages, services, files, etc. Common modules include apt, yum, service, copy, and file.
+
+
+Structure of a Basic Playbook:
+===============================
+A basic playbook has the following components:
+
+YAML Header: The file begins with a --- to indicate it’s a YAML file.
+
+ the hosts (target machines)
+ become: yes   ----->Sudo user 
+
+Tasks: Tasks define the actions to be executed on the target systems.
+
+![image](https://github.com/user-attachments/assets/71982463-6b41-4481-af94-29c76690b0b6)
+
+I want to see where the Ansible is installed on ACS
+>cd /etc/ansible
+
+NOTE::
+==========
+Playbook is written in YAML format
+Inside the playbook tasks
+Each task is a module
+Playbook is a one of yaml file
+Yaml file is a collection of key-value pairsset of all tasks
+Playbook is tell to the ansible what are the tasks can be performed
+Each task  one module
+Module is a smallest item of ansible
+Module can be used to individual or smallest task can be performed
+Any configuration management tool should maintain ‘state’
+
+
+hosts: all (apply all we can be mentioned in inventory )
+become: yes  (become user as a sudo user)
+tasks:
+
+we can search in google ansible playbook
+https://docs.ansible.com/ansible/latest/user_guide/playbooks.html
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html#basics
+
+
+install git example playbook::
+==============================
+
+---
+- hosts: all
+  become: yes
+  tasks:
+  -  name: install git
+     apt:
+       name: git
+       state: present
+       update_cache: yes
+
+     
+note:::default state is present 
+update_cache: yes tells Ansible to run the apt-get update command on the remote machine before performing any further package operations (like installing or upgrading packages).
+become: yes  # Elevate privileges to execute tasks as root
+
+java install playbook::
+https://www.geeksforgeeks.org/how-to-install-java-using-ansible-playbook/
+
+
+
+
+java and git install playbook::
+---
+- hosts: all
+  become: yes
+  tasks:
+  -  name: install git
+     apt:
+       name: git
+       state: present
+       update_cache: yes
+
+  -  name: Install Java
+     apt:
+       name: openjdk-17-jdk
+       state: present
+
+>sudo vi demo.yml
+
+copy git playbook code to demo.yml
+
+---
+- hosts: all
+  become: yes
+  tasks:
+  -  name: install git
+     apt:
+       name: git
+       state: present
+       update_cache: yes
+
+     
+
+Run the playbook::
+===============
+>ansible-planbook <playbookname>
+>ansible-playbook demo.yml
+
+![image](https://github.com/user-attachments/assets/9bc02cd9-6749-4a09-a7d3-218110fd00d1)
+
+ansible@ip-172-31-28-207:/etc/ansible$ ansible-playbook demo.yml
+
+![image](https://github.com/user-attachments/assets/7df9edfc-af27-4815-b340-482237dfc368)
+
+
+PLAY [all] **************************************************************************************************************************************
+
+TASK [Gathering Facts] **************************************************************************************************************************
+[WARNING]: Platform linux on host localhost is using the discovered Python interpreter at /usr/bin/python3.12, but future installation of
+another Python interpreter could change the meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+ok: [localhost]
+[WARNING]: Platform linux on host ansiblenode2@172.31.30.200 is using the discovered Python interpreter at /usr/bin/python3.12, but future
+installation of another Python interpreter could change the meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+ok: [ansiblenode2@172.31.30.200]
+[WARNING]: Platform linux on host ansiblenode1@172.31.20.135 is using the discovered Python interpreter at /usr/bin/python3.12, but future
+installation of another Python interpreter could change the meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+ok: [ansiblenode1@172.31.20.135]
+
+TASK [install git] ******************************************************************************************************************************
+ok: [localhost]
+ok: [ansiblenode1@172.31.20.135]
+ok: [ansiblenode2@172.31.30.200]
+
+PLAY RECAP **************************************************************************************************************************************
+ansiblenode1@172.31.20.135 : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansiblenode2@172.31.30.200 : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+localhost                  : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+ansible@ip-172-31-28-207:/etc/ansible$
+
+
+install git and jdk17 insatlled playbook::
+======================================
+
+---
+- hosts: localhost
+  become: yes
+  tasks:
+  -  name: install git
+     apt:
+       name: git
+       state: present
+       update_cache: yes
+  -   name: Install Java jdk17 on ubuntu machine
+      apt:
+        name: openjdk-8-jdk
+        state: absent
+        update_cache: yes
+
+      

@@ -2714,12 +2714,19 @@ install git example playbook::
 
 ---
 - hosts: all
+
   become: yes
+  
   tasks:
+  
   -  name: install git
+    
      apt:
+     
        name: git
+     
        state: present
+     
        update_cache: yes
 
      
@@ -2736,17 +2743,27 @@ https://www.geeksforgeeks.org/how-to-install-java-using-ansible-playbook/
 java and git install playbook::
 ---
 - hosts: all
+  
   become: yes
+  
   tasks:
+  
   -  name: install git
+    
      apt:
+     
        name: git
+     
        state: present
+     
        update_cache: yes
 
   -  name: Install Java
+    
      apt:
+     
        name: openjdk-17-jdk
+     
        state: present
 
 >sudo vi demo.yml
@@ -2755,12 +2772,19 @@ copy git playbook code to demo.yml
 
 ---
 - hosts: all
+  
   become: yes
+  
   tasks:
+  
   -  name: install git
+    
      apt:
+     
        name: git
+     
        state: present
+     
        update_cache: yes
 
      
@@ -2811,17 +2835,29 @@ install git and jdk17 insatlled playbook::
 
 ---
 - hosts: localhost
+  
   become: yes
+  
   tasks:
+  
   -  name: install git
+    
      apt:
+     
        name: git
+     
        state: present
+     
        update_cache: yes
+     
   -   name: Install Java jdk17 on ubuntu machine
+ 
       apt:
+      
         name: openjdk-8-jdk
+      
         state: absent
+      
         update_cache: yes
 
       

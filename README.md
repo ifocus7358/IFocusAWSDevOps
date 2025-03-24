@@ -2871,6 +2871,9 @@ https://www.geeksforgeeks.org/how-to-install-tomcat-using-ansible-playbook/
 
 
 
+
+
+
 24/03/2025::
 ==============
 
@@ -2905,7 +2908,9 @@ I want to create my own inventory
 ![image](https://github.com/user-attachments/assets/79f8fb33-19d1-47a9-b26e-aff30d75d408)
 
 >cat /etc/ansible/hosts
+
 Sudo vi hosts
+
 Copy all hosts
 
 ![image](https://github.com/user-attachments/assets/bcda07ba-ab66-4b86-bf67-f7ad9c556230)
@@ -2925,14 +2930,21 @@ static inventory groups defined in the standard INI or YAML format.
 # Define groups of hosts:: >sudo vi hosts
 
 [web_servers]
+
  ansiblenode1@172.31.20.135
+ 
  ansiblenode2@172.31.30.200
+ 
  localhost
+ 
 [db_servers]
+
 ansiblenode1@172.31.20.135
+
 ansiblenode2@172.31.30.200
 
 [app_servers]
+
  localhost
  
 i want to insatll 3 spfwares :: below playbook name -----> installsoftware.yml
@@ -2940,31 +2952,47 @@ i want to insatll 3 spfwares :: below playbook name -----> installsoftware.yml
 
 ---
 - hosts: web_server
+  
   become: yes
+  
   tasks:
+  
   -  name: install git
+    
      apt:
+     
        name: git
+     
        state: present
+     
        update_cache: yes
 
   -  name: install tree
+    
      apt:
+     
        name: tree
+     
        state: present  
 
   -  name: install apache
+  
      apt:
+     
        name: apache2
+     
        state: present
 
 once above two files created run the below command
+
 >ansible-playbook -i hosts installsoftware.yml
      
 ![image](https://github.com/user-attachments/assets/36d33a9a-b113-402c-80f7-1e9c404a245b)
 
 >ansible -i hosts -m ping Webserver
+
 Best practice is you need to create our own inventories
+
 >sudo vi hosts
 
 after ran the above yaml, please try to access all machines with IPaddresss

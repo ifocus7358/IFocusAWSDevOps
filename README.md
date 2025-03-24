@@ -2868,4 +2868,149 @@ https://docs.ansible.com/ansible/2.9/modules/apt_module.html#parameters
 https://www.geeksforgeeks.org/how-to-install-java-using-ansible-playbook/
 https://www.yamllint.com/
 https://www.geeksforgeeks.org/how-to-install-tomcat-using-ansible-playbook/
-      
+
+
+
+24/03/2025::
+==============
+
+Ansible all modules::
+https://docs.ansible.com/ansible/latest/modules/list_of_all_modules.html
+https://docs.ansible.com/ansible/2.9/modules/list_of_all_modules.html
+
+Executing ansible in 2 ways
+1.	Adhoc command  yearly base
+2.	Playbook (YAML/YML) format use for repetitive work
+
+When we can use adhoc commands  ->I want restart servers yearly base 
+
+if you can use system inventory, below is the command
+>ansible-playbook <playbookname>
+>ansible-playbook hello-world.yml
+
+I don’t want to use system level inventory
+
+Inventory::
+==========
+where hosts/ipaddress are stored
+
+I want to create my own inventory
+
+>Cd /etc/ansible
+
+![image](https://github.com/user-attachments/assets/e03cd989-34e8-46f5-88d0-9af56f11b6d9)
+
+![image](https://github.com/user-attachments/assets/7a4d1993-1c1e-4da6-94b0-eeb105cb0d36)
+
+![image](https://github.com/user-attachments/assets/79f8fb33-19d1-47a9-b26e-aff30d75d408)
+
+>cat /etc/ansible/hosts
+Sudo vi hosts
+Copy all hosts
+
+![image](https://github.com/user-attachments/assets/bcda07ba-ab66-4b86-bf67-f7ad9c556230)
+
+I want categories into Inventory groups::
+===================================
+
+In Ansible, inventory groups are used to organize and categorize hosts (machines or servers) into logical groups. This allows you to apply tasks to specific sets of servers, simplifying playbook management and execution. An inventory is a list of managed hosts and their associated metadata, and groups are one of the key components of that structure.
+
+Here’s a detailed explanation of Ansible inventory groups
+
+1. What Are Inventory Groups?
+An inventory group in Ansible is a way to group hosts based on a shared characteristic. For example, you might have groups for different environments (e.g., dev, prod), different types of servers (e.g., web_servers, db_servers), or other logical categories that fit your needs.
+
+static inventory groups defined in the standard INI or YAML format.
+
+# Define groups of hosts:: >sudo vi hosts
+
+[web_servers]
+ ansiblenode1@172.31.20.135
+ ansiblenode2@172.31.30.200
+ localhost
+[db_servers]
+ansiblenode1@172.31.20.135
+ansiblenode2@172.31.30.200
+
+[app_servers]
+ localhost
+ 
+i want to insatll 3 spfwares :: below playbook name -----> installsoftware.yml
+==============================
+
+---
+- hosts: web_server
+  become: yes
+  tasks:
+  -  name: install git
+     apt:
+       name: git
+       state: present
+       update_cache: yes
+
+  -  name: install tree
+     apt:
+       name: tree
+       state: present  
+
+  -  name: install apache
+     apt:
+       name: apache2
+       state: present
+
+once above two files created run the below command
+>ansible-playbook -i hosts installsoftware.yml
+     
+![image](https://github.com/user-attachments/assets/36d33a9a-b113-402c-80f7-1e9c404a245b)
+
+>ansible -i hosts -m ping Webserver
+Best practice is you need to create our own inventories
+>sudo vi hosts
+
+after ran the above yaml, please try to access all machines with IPaddresss
+
+![image](https://github.com/user-attachments/assets/4a7778cd-6b97-4822-ad5e-11bbdde82231)
+
+![image](https://github.com/user-attachments/assets/96a67d2a-993a-47ff-aa79-3dc8cd7aa06a)
+
+![image](https://github.com/user-attachments/assets/01ee5e45-446e-42f2-a47f-c8b3e2fbe2f5)
+
+Please enabled Inbound and Outbound rules::
+=======================================
+
+Inbound and outbound rules refer to the types of network traffic that are allowed or denied to and from a system, such as a server, virtual machine, or network device. These rules are typically defined in firewalls or security groups (such as in cloud environments like AWS, Azure, or Google Cloud). The primary goal is to control which data can enter or leave a network, ensuring security and proper access control.
+
+Here’s a detailed explanation of inbound and outbound rules:
+
+ Inbound Rules::
+Inbound rules control traffic entering a system or network. These rules define which types of external traffic are allowed to reach a server, instance, or device.
+
+Common Uses:
+Allowing specific users or services to access the system.
+
+Restricting access to the system from unauthorized users.
+
+Opening ports for services like web servers (HTTP, HTTPS), SSH, database connections, etc
+
+Allowing incoming traffic on port 80 (HTTP) so that users can access a web server.
+
+Outbound Rules::
+Outbound rules control traffic leaving a system or network. These rules define which traffic is allowed to exit a server or device and reach external destinations.
+
+Common Uses:
+Allowing a server to access external services like APIs, databases, or external servers.
+
+Restricting unwanted traffic from the system to external destinations.
+
+Controlling the flow of outgoing traffic to ensure compliance with security policies.
+
+Allow HTTP/HTTPS: Allow outbound traffic on ports 80 (HTTP) and 443 (HTTPS) to any IP:
+
+
+
+![image](https://github.com/user-attachments/assets/0e51f799-d746-45a5-94cb-f358ade65ba2)
+
+![image](https://github.com/user-attachments/assets/8fa024b7-0999-40f7-94cb-3eaa018fbd41)
+
+![image](https://github.com/user-attachments/assets/2ca3de47-8bea-4f5a-a35e-0238788cb7c7)
+

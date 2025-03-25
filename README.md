@@ -3064,7 +3064,6 @@ PHP: The programming language used for dynamic web page generation.
 
 
 
-
 Manual Steps::
 ====================
 
@@ -3087,10 +3086,6 @@ https://www.digitalocean.com/community/tutorials/how-to-install-lamp-stack-on-ub
 >sudo apt install php-cli
 
 >sudo nano /var/www/html/info.php
-
-<?php
-phpinfo();
-
 
 above steps are manually installed all required softwares in LAMP project but my requirement is to write a Playbook for those manuall steps
 
@@ -3146,8 +3141,6 @@ Playbook for LAMP::  phppackage.yml
 info.php ::
 ==========
 
-<?php
-phpinfo();
 
 hosts grouping:
 ================
@@ -3254,5 +3247,9 @@ Please execute above steps we will see the php insatlled on all 3 machines
 ![image](https://github.com/user-attachments/assets/6d58255a-e6ea-44b7-a4e2-39f8598358b3)
 
 
+info.php::
+============
 
+<?php
+phpinfo();
 

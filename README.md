@@ -3170,6 +3170,16 @@ Playbook for LAMP::  phppackage.yml
      dest: /var/www/html/info.php     
 
 
+Copy Module::
+=========
+
+https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html
+
+Service Module::
+==================
+
+https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html
+
 info.php ::
 ==========
 

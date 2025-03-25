@@ -3096,46 +3096,78 @@ Playbook for LAMP::  phppackage.yml
 
 ---
 - hosts: all
+
   become: yes
+
   tasks:
+  
   -  name: install apache2
+
      apt:
-       name: apache2
-       state: present
-       update_cache: yes
+
+     name: apache2
+
+     state: present
+
+     update_cache: yes
 
   -  name: install php
-     apt:
-       name: php
-       state: present  
+
+      apt:
+
+      name: php
+
+      state: present  
 
   -  name: install mysql-server
+
      apt:
-       name: mysql-server
-       state: present
+
+      name: mysql-server
+
+      state: present
+     
   -  name: install libapache2-mod-php
+
      apt:
-        name: libapache2-mod-php
-        state: present                 
+
+     name: libapache2-mod-php
+
+     state: present
+                   
   -  name: install  php-mysql
+
      apt:
-       name: php-mysql
-       state: present 
+
+     name: php-mysql
+
+     state: present
+     
   -  name: restart apache
+
      service:
-       name: apache2
-       enabled: true
-       state: restarted
+
+     name: apache2
+
+      enabled: true
+
+     state: restarted
 
   -  name: install php-cli
+
      apt:
-       name: php-cli
-       state: present 
+
+     name: php-cli
+
+      state: present 
 
   -  name: copy module info.php
+
      copy:
-       src: info.php
-       dest: /var/www/html/info.php     
+
+     src: info.php
+
+     dest: /var/www/html/info.php     
 
 
 info.php ::

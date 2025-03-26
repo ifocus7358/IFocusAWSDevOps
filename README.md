@@ -3290,8 +3290,38 @@ Please execute above steps we will see the php insatlled on all 3 machines
 
 
 info.php::
-============
+===========
 
-<?php
-phpinfo();
+<html>
+  <head>
+    <title>your_domain website</title>
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+
+    <p>This is the landing page of <strong>your_domain</strong>.</p>
+  </body>
+  <body>
+    <h1>Hello World!</h1>
+
+    <p>This is the landing page of <strong>your_domain</strong>.</p>
+  </body>
+</html>
+
+
+
+
+
+26/03/2025::
+===============
+
+loop::
+
+In Ansible, loops are used to repeat tasks over a list of items, making automation more efficient and reducing redundancy in playbooks. You can loop through arrays, dictionaries, and other types of data in Ansible to execute tasks multiple times.
+
+There are several ways to use loops in Ansible, and here are the most common methods:
+
+1. Using loop keyword
+The loop keyword is the most common way to iterate over a list of items. Here's an example of how to use it:
+
 

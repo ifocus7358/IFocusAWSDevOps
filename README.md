@@ -3324,4 +3324,106 @@ There are several ways to use loops in Ansible, and here are the most common met
 1. Using loop keyword
 The loop keyword is the most common way to iterate over a list of items. Here's an example of how to use it:
 
+https://spacelift.io/blog/ansible-loops
+
+https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_loops.html
+
+https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_loops.html
+
+
+Examples::
+==========
+
+---
+- hosts: Webservers
+
+  become: yes
+
+  tasks:
+
+    - name: Install all packages
+   
+      apt:
+    
+	name: "{{ item }}"
+
+        state: latest
+
+     loop:
+        -  apache2
+        -  php
+        -  php-mysql
+        -  libapache2-mod-php
+        -  php-cli
+    -  name: restart apache
+
+        service:
+
+       name: apache2
+
+        enabled: true
+
+       state: restarted
+
+    -  name: copy module info.php
+
+       copy:
+
+       src: info.php
+
+       dest: /var/www/html/info.php  
+
+
+
+Setup module in ansible::
+============================
+
+
+https://docs.ansible.com/ansible/latest/collections/ansible/builtin/setup_module.html
+Setup module is used to collect the facts
+Facts information gather from nodes called facts
+>ansible -I hosts -m setup Webserver
+
+Using filter command
+
+>ansible -i hosts -m setup -a "filter=*os*" Webserver
+
+ansible_os_family": "Debian"
+
+Ansible when statements
+
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html#the-when-statement
+
+
+ansible_os_family": "Debian"
+
+When condition is always used bottom of the script and using scrips we can able to run a playbook on a different platforms 
+
+1.Debian
+2.Redhat
+---
+- hosts: Webserver
+
+  become: yes
+
+  tasks:
+  - name: install apache
+
+    apt:
+      name: apache2
+
+    state: present
+
+    update_cache: yes
+
+    when: ansible_os_family == "Debian"  
+  - name: install apache
+
+    yum:
+
+    name: httpd
+
+     state: present
+
+    when: ansible_os_family == "Redhat"
 

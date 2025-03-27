@@ -3427,3 +3427,115 @@ When condition is always used bottom of the script and using scrips we can able 
 
     when: ansible_os_family == "Redhat"
 
+
+
+
+27/03/2025::
+==============
+
+
+In Ansible, variables are used to store values that can be referenced and used throughout your playbooks, roles, and tasks. This allows for dynamic, reusable, and flexible automation. Here’s a basic breakdown of how Ansible variables work and the different ways you can define and use them:
+
+
+define variables in 3 places
+1.	Inventory level  lowest priority
+2.	Playbook level 
+3.	Command line level –highest level priority
+
+
+Inventory variables: These are defined in the inventory file (or dynamic inventory) for specific hosts or groups.
+
+[webservers]
+ansiblenode1@172.31.20.135  package_name=git
+ansiblenode2@172.31.30.200 package_name=apache2
+localhost 
+
+[webservers:vars]
+ansiblenode2@172.31.30.200 
+localhost 
+
+package_name=httpd
+
+Playbook variables: You can define variables directly within your playbooks using the vars section.
+
+---
+- hosts: Webservers
+
+  become: yes
+
+  vars:
+
+  pacakge_name: git
+
+  tasks:
+    
+    - name: Install all packages
+
+      apt:
+
+      name: "{{ pacakge_name }}"
+
+      state: present
+
+      Command-line variables: You can pass variables to your playbooks at runtime using the -e or --extra-vars option.
+      
+
+      >ansible-playbook -i hosts -e "package_name=apache2" variables2.yml
+
+
+
+Ansible resolves variable values based on a specific precedence order. The order from highest to lowest precedence is:
+====================================================================================================================
+
+Extra-vars (-e on the command line): Command-line variables take the highest precedence.
+
+Playbook variables: Variables defined within the playbook.
+
+Inventory variables: Variables set in the inventory.
+
+Debug & vars & register in Ansible module::
+==========================================
+
+https://docs.ansible.com/ansible/latest/collections/ansible/builtin/debug_module.html
+
+---
+- name: Echo message on localhost
+
+  hosts: localhost
+
+   connection: local
+
+   gather_facts: no
+
+   vars:
+
+   message: "Hello from Ansible playbook on localhost!"
+
+  tasks:
+    
+    - name: Echo message and connection type
+
+      ansible.builtin.shell: "echo '{{ message }}' ; echo 'Connection type: {{ ansible_connection }}'"
+
+      register: echo_output
+
+    
+    - name: Display output
+
+      debug:
+
+      msg: "{{ echo_output.stdout_lines }}"
+
+
+>ansible-playbook -i hosts -vvv variable.yaml  --------> verbose logs purpose ,please run this command
+
+
+![image](https://github.com/user-attachments/assets/7d18a6e5-a53b-436b-bf26-dbe1db0e89af)
+
+
+Registry Module::
+-----------------
+Registry is a module used to results can be stored in a variable
+Stored ouptput of a task or script
+I want execute a command and results can be stored in a variable is called registry
+

@@ -1403,6 +1403,10 @@ Integrate Jenkins with Tomcat::
 ![image](https://github.com/user-attachments/assets/1d3919a7-585b-4737-9d60-95207ca08ad8)
 
 
+![image](https://github.com/user-attachments/assets/0d1d5e30-6da8-485a-937f-b04c50e15351)
+
+
+
 Integrating Tomcat with Jenkins is a common use case for automating the deployment of Java-based web applications. Jenkins can be set up to deploy a web application to a Tomcat server whenever a new build is triggered.
 
 Prerequisites:
@@ -3539,3 +3543,210 @@ Registry is a module used to results can be stored in a variable
 Stored ouptput of a task or script
 I want execute a command and results can be stored in a variable is called registry
 
+
+
+28/03/2025::
+===================
+
+
+Ansible Roles::
+===================
+
+Ansible roles are a way of organizing playbooks and tasks in a modular, reusable, and maintainable structure. They allow you to break down complex playbooks into smaller, focused units of functionality that can be easily shared and reused across different projects. Here's a more detailed look at Ansible roles:
+
+https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse_roles.html
+
+1.Written ansible in a reusable fashion
+2.How do I use someone else’s work
+3.Ansible galaxy is a place where we can find reusable roles
+
+https://galaxy.ansible.com/
+
+4.Which we can use in your script
+
+
+
+install roles
+
+ > Ansible-galaxy install <rolename>
+
+ >ansible-galaxy install my_role
+
+create my own role::
+
+> ansible-galaxy init <rolename>
+
+>ansible-galaxy init my_role
+
+
+
+Structure of Ansible Roles::
+===================
+
+my_role/
+├── defaults/
+│   └── main.yml            # Default variables
+├── files/
+│   └── somefile            # Files to be copied to the target
+├── handlers/
+│   └── main.yml            # Handlers (usually for service restarts)
+├── meta/
+│   └── main.yml            # Metadata about the role
+├── tasks/
+│   └── main.yml            # The main tasks (this file includes other task files if needed)
+├── templates/
+│   └── config.j2           # Jinja2 templates for dynamic file creation
+├── tests/
+│   └── test.yml            # Test playbooks to verify the role works
+├── vars/
+│   └── main.yml            # Custom variables
+
+
+Using Roles in Playbooks
+Once you've defined a role, you can use it in your playbook like this:
+
+---
+- name: Example Playbook using roles
+  hosts: all
+  become: yes
+  roles:
+    - my_role
+
+Benefits of Using Roles
+Reusability: Roles can be reused across different playbooks and projects.
+
+Modularity: Roles allow you to organize your playbook into smaller, manageable parts.
+
+Clarity: Each role focuses on a specific task or function, making your playbooks more understandable.
+
+Example Role: Installing Tomcat
+
+https://galaxy.ansible.com/ui/standalone/roles/robertdebock/tomcat/install/
+
+
+Create my own role
+
+> Ansible-galaxy init rolename
+
+![image](https://github.com/user-attachments/assets/af275783-63b6-40ab-a319-645db283a40f)
+
+![image](https://github.com/user-attachments/assets/34cfe34b-b8bc-4026-9014-0c07c952c3af)
+
+Install tomcat
+
+If you're looking to install or use an Ansible role for Tomcat from Ansible Galaxy, you can search for available roles and collections related to Tomcat. Here's how you can find and use a role related to Tomcat from Galaxy.
+1.	Search for a Tomcat Role
+
+https://galaxy.ansible.com/
+
+To search for a role related to Tomcat on Ansible Galaxy, you can use the following command:
+bash
+Copy
+ansible-galaxy search tomcat
+This will return a list of roles related to Tomcat that you can install and use.
+2. Install a Tomcat Role
+Once you’ve found a suitable role for Tomcat, you can install it using the ansible-galaxy install command.
+For example, if you find a role called geerlingguy.tomcat, you can install it by running:
+bash
+Copy
+> ansible-galaxy install geerlingguy.tomcat
+This will download and install the role into your ~/.ansible/roles/ directory (or the path defined in your ansible.cfg file).
+3. Use the Installed Tomcat Role in Your Playbook
+After installing the role, you can use it in your playbook. Here’s an example of a simple playbook that installs and configures Tomcat:
+yaml
+Copy
+
+Deploywar.yml::
+=============
+
+---
+- hosts: localhost
+  become: yes
+  roles:
+  - robertdebock.java
+  - robertdebock.tomcat
+ 
+  > ansible-playbook -i hosts Deploywar.yml
+  
+
+![image](https://github.com/user-attachments/assets/306fd1fc-8c51-40f7-81b6-41a44e6ee915)
+
+  
+This will use the geerlingguy.tomcat role to set up Tomcat on your webservers hosts.
+
+https://galaxy.ansible.com/robertdebock/tomcat
+
+![image](https://github.com/user-attachments/assets/29cfc5e4-b8e6-494b-a462-d8a11699df12)
+
+Deploywar.yml
+
+![image](https://github.com/user-attachments/assets/d7f4d510-bee2-4d32-ad56-7906a8574e93)
+
+![image](https://github.com/user-attachments/assets/adad9ea6-ed52-457e-a9eb-adb2d19ad026)
+
+![image](https://github.com/user-attachments/assets/a4c880aa-f378-4085-9122-3ef93a25e09a)
+
+
+By default  tomcat run port 8080
+http://18.236.181.244:8080/
+http://34.216.173.44:8080/manager/html
+
+![image](https://github.com/user-attachments/assets/fa5faaeb-ec9e-43f2-9184-7bf46f1433c4)
+
+
+Most of the work is done 
+Where is my war file
+
+Deploy Onlinebook store war to tomcat server using roles::
+==============================================================
+
+>If war file is available in local machine use copy module
+>if war file is available other machine(internet) use get_url module
+Tomcat by default install
+
+>/opt/tomcat
+
+![image](https://github.com/user-attachments/assets/45a19e09-7641-4dec-b730-d2b01a3ea63b)
+
+![image](https://github.com/user-attachments/assets/721d2e75-0368-4d87-bdf1-d54331ef8afb)
+
+---
+- hosts: Webservers
+  become: yes
+  roles:
+  - robertdebock.java
+  - robertdebock.tomcat
+  tasks:
+  - name: copy war
+    get_url:
+      url: https://baby7358.s3.us-west-2.amazonaws.com/onlinebookstore.zip 
+      dest: /opt/tomcat/webapps/gameoflife.war
+
+
+![image](https://github.com/user-attachments/assets/d43d4d4a-ee8d-4dd8-af09-b71dfdf2da6f)
+
+Create S3 Bucket in AWS account::
+===============================
+
+Go to AWS account and search S3 bucket 
+
+S3=SSS=simple storage services
+
+![image](https://github.com/user-attachments/assets/8c1b5637-9392-414d-ab0b-21bf9d882609)
+
+Select S3
+
+![image](https://github.com/user-attachments/assets/c62a298f-185d-43ec-9d62-8b874e7627ec)
+
+Click Create bucket
+
+![image](https://github.com/user-attachments/assets/097eedf8-8e2f-48f5-876f-2c3debfccda8)
+
+Bucket name provide
+
+![image](https://github.com/user-attachments/assets/669f5b5a-d4e4-43ee-add1-e6be36171ec4)
+
+Object Ownership  ---- ACLs enabled selected
+
+
+Unchecked Block all public access

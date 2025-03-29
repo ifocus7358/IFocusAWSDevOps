@@ -3543,6 +3543,23 @@ Registry is a module used to results can be stored in a variable
 Stored ouptput of a task or script
 I want execute a command and results can be stored in a variable is called registry
 
+Handlers::
+===========
+Sometimes you want a task to run only when a change is made on a machine. For example, you may want to restart a service if a task updates the configuration of that service, but not if the configuration is unchanged. Ansible uses handlers to address this use case. Handlers are tasks that only run when notified
+
+---
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: Ensure apache is at the latest version
+      ansible.builtin.yum:
+        name: httpd
+        state: latest
+  handlers:
+    - name: Restart apache
+      ansible.builtin.service:
+        name: httpd
+        state: restarted
 
 
 28/03/2025::
@@ -3750,3 +3767,96 @@ Object Ownership  ---- ACLs enabled selected
 
 
 Unchecked Block all public access
+
+
+![image](https://github.com/user-attachments/assets/61cac919-cbbd-4b39-9121-d1ed20e33bcd)
+
+Ackened 
+
+![image](https://github.com/user-attachments/assets/9edcd3b0-c71a-4e78-8132-0469a192cd82)
+
+Click crete bucket
+
+![image](https://github.com/user-attachments/assets/c0b39afe-325c-4d82-9ea6-2204896c1f55)
+
+S3 bucket is created in AWS
+
+![image](https://github.com/user-attachments/assets/702e2185-29cd-43d2-9176-ad9788907bc8)
+
+S3 bucket Created successfully
+
+
+![image](https://github.com/user-attachments/assets/3c2855d7-ae2c-4f18-8ce7-3b766211b811)
+
+Click Bucket
+
+![image](https://github.com/user-attachments/assets/3000b5bc-8691-40cc-b5ee-e378fe813bf6)
+
+
+Click Upload 
+
+
+![image](https://github.com/user-attachments/assets/71efca18-9c4a-4bad-97ff-6e6baf6b559c)
+
+Click Add Files
+
+
+![image](https://github.com/user-attachments/assets/e74175f3-ca04-47bb-977b-9f9df1cf7139)
+
+Select Onlinebookstore.war file
+
+![image](https://github.com/user-attachments/assets/89cac099-5c85-4a29-91e9-8868f2e2f020)
+
+Select check box to upload the onlinebookstore.war file
+
+![image](https://github.com/user-attachments/assets/30c81ce3-4605-45e9-90bd-b719dac4d875)
+
+Click Upload
+
+![image](https://github.com/user-attachments/assets/85a5204d-b660-4d0c-8983-fc24b05427e4)
+
+Upload Succeeded
+
+![image](https://github.com/user-attachments/assets/11d79c2d-c353-404c-be41-130608b34dcb)
+
+Copy URL
+
+![image](https://github.com/user-attachments/assets/147864ff-fc89-4ae1-b104-b383cccba33b)
+
+![image](https://github.com/user-attachments/assets/37ad0996-d054-4a3b-aa57-c0480254c1c1)
+
+Copy url to below script:: onlinebookstore.yml
+===================
+
+---
+- hosts: localhost
+  become: yes
+  roles:
+  - robertdebock.java
+  - robertdebock.tomcat
+  tasks:
+  - name: copy war
+    get_url:
+      url: https://infocus942.s3.us-west-2.amazonaws.com/onlinebookstore.war
+      dest: /opt/tomcat/webapps/onlinebookstore.war
+
+![image](https://github.com/user-attachments/assets/402272bc-6604-4840-a406-c1cc8e95dcc6)
+
+run the playbook
+
+>ansible-playbook -i hosts onlinebookstore.yml
+
+![image](https://github.com/user-attachments/assets/4ed55d65-f16e-4314-8dba-c3a34c3ee5c2)
+
+Success
+
+![image](https://github.com/user-attachments/assets/592b947e-d422-4430-9729-98724403ce0d)
+
+Verify deployment in Tomcat server
+
+![image](https://github.com/user-attachments/assets/c50103d8-21ba-484e-8562-34a1b5b2c0d0)
+
+http://54.218.133.244:8080/onlinebookstore/
+
+![image](https://github.com/user-attachments/assets/e79ac48a-f76e-42ff-b5a5-28094402c20a)
+

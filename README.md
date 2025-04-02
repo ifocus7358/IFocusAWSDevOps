@@ -3920,3 +3920,281 @@ Physical & Virtual & Hypervisors/VMwares::
 
 
 Example:: For festival season In your organization leave management application multiple employees are applied leaves at the same time in that scenario docker is very easy to scale the one more application but physically it’s very difficult so docker is the best choice
+
+
+
+
+02/04/2025::
+=============
+
+
+Install Docker in Ubuntu machine::
+=====================================
+
+Please follow below link steps to install the docker in ubuntu and please read all the content in that link
+
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-22-04
+
+once installed docker please verify below commands::
+
+>docker --version
+
+root@ip-172-31-20-86:~# docker --version
+Docker version 28.0.4, build b8034c0
+
+root@ip-172-31-20-86:~# docker info
+Client: Docker Engine - Community
+ Version:    28.0.4
+ Context:    default
+ Debug Mode: false
+ Plugins:
+  buildx: Docker Buildx (Docker Inc.)
+    Version:  v0.22.0
+    Path:     /usr/libexec/docker/cli-plugins/docker-buildx
+  compose: Docker Compose (Docker Inc.)
+    Version:  v2.34.0
+    Path:     /usr/libexec/docker/cli-plugins/docker-compose
+
+Server:
+ Containers: 0
+  Running: 0
+  Paused: 0
+  Stopped: 0
+ Images: 0
+ Server Version: 28.0.4
+ Storage Driver: overlay2
+  Backing Filesystem: extfs
+  Supports d_type: true
+  Using metacopy: false
+  Native Overlay Diff: true
+  userxattr: false
+ Logging Driver: json-file
+ Cgroup Driver: systemd
+ Cgroup Version: 2
+ Plugins:
+  Volume: local
+  Network: bridge host ipvlan macvlan null overlay
+  Log: awslogs fluentd gcplogs gelf journald json-file local splunk syslog
+ Swarm: inactive
+ Runtimes: io.containerd.runc.v2 runc
+ Default Runtime: runc
+ Init Binary: docker-init
+ containerd version: 05044ec0a9a75232cad458027ca83437aae3f4da
+ runc version: v1.2.5-0-g59923ef
+ init version: de40ad0
+ Security Options:
+  apparmor
+  seccomp
+   Profile: builtin
+  cgroupns
+ Kernel Version: 6.8.0-1024-aws
+ Operating System: Ubuntu 24.04.2 LTS
+ OSType: linux
+ Architecture: x86_64
+ CPUs: 2
+ Total Memory: 3.82GiB
+ Name: ip-172-31-20-86
+ ID: 201c6f4b-75d3-4326-adf5-00b9a82a8d4d
+ Docker Root Dir: /var/lib/docker
+ Debug Mode: false
+ Experimental: false
+ Insecure Registries:
+  ::1/128
+  127.0.0.0/8
+ Live Restore Enabled: false
+
+if above page is came without any erros, it means docker is installed in your machine
+
+
+Docker High Level Client -Server Architecture::
+==================================
+
+
+![image](https://github.com/user-attachments/assets/695f72c0-a316-4f55-81c9-d4eb79c59826)
+
+Docker's high-level architecture revolves around several components that work together to provide containerization and isolation for applications
+
+
+Docker Client (CLI)::
+=================
+
+The Docker Client is the primary interface for interacting with Docker. It can be a command-line interface (CLI), like the docker command, or a graphical interface (GUI) in some tools.
+
+It allows users to interact with Docker's features, such as building containers, running containers, and managing containers and images.
+
+It sends requests to the Docker Daemon to execute commands.
+
+Docker Daemon (Dockerd)::
+====================
+
+The Docker Daemon (also known as dockerd) is the core component of Docker. It runs in the background on the host system.
+
+The daemon is responsible for managing Docker containers, images, networks, and volumes. It listens for Docker API requests and handles container lifecycle operations such as starting, stopping, and building containers.
+
+The Docker Daemon can communicate with multiple Docker clients, allowing for distributed management of containers.
+
+Flow:
+============
+1.The Docker Client sends a command to the Docker Daemon.
+
+2.The Docker Daemon interacts with containers, images, and storage volumes.
+
+3.The Docker Daemon can pull images from a Docker Registry.
+
+4.The Docker Daemon runs containers based on the images and handles networking and storage.
+
+Docker commands::
+====================
+
+ >docker pull <imagename>
+ >docker pull hello-world
+ >docker images   ----used to display the all images
+ > docker image ls ----used to display the all images
+ 
+ >docker run ---used to build the images and create the container
+>
+detached mode::
+=================
+
+Docker detached mode refers to running a container in the background
+
+>docker run -d <image_name>
+
+example::
+> docker run -d nginx
+
+Where:
+
+-d is the flag for detached mode.
+
+<image_name> is the name of the Docker image you want to run.
+
+> docker run -d nginx
+
+This command will:
+
+Run the nginx container in detached mode.
+
+Start the container in the background.
+
+To view the containers running in detached mode, you can use the docker ps command:
+======================================
+
+>docker ps
+
+Stopping a Container::
+=================
+
+>docker stop <containerID>
+
+Start a Container::
+=================
+
+>docker start <containerID>
+
+To run a command inside a running container:
+======================
+
+>docker exec -it <container_id_or_name> <command>
+>docker exec -it 5336d949f33b /bin/bash
+
+>root@5336d949f33b:/# hostname
+5336d949f33b
+>root@5336d949f33b:/# hostname -i
+172.17.0.3
+
+
+![image](https://github.com/user-attachments/assets/c7114894-3fcd-46b0-b393-6f296d23b845)
+
+NOTE:::
+=========
+
+>docker exec -it 5178eb58223a /bin/bash
+Use this command inside the container
+
+>ctrl pq
+Outside the containers
+
+Lab practice::
+===============
+
+take one nginx web server
+
+>docker pull nginx
+
+root@ip-172-31-20-86:~# docker pull nginx
+Using default tag: latest
+latest: Pulling from library/nginx
+6e909acdb790: Pull complete
+5eaa34f5b9c2: Pull complete
+417c4bccf534: Pull complete
+e7e0ca015e55: Pull complete
+373fe654e984: Pull complete
+97f5c0f51d43: Pull complete
+c22eb46e871a: Pull complete
+Digest: sha256:124b44bfc9ccd1f3cedf4b592d4d1e8bddb78b51ec2ed5056c52d3692baebc19
+Status: Downloaded newer image for nginx:latest
+docker.io/library/nginx:latest
+
+>docker images
+
+root@ip-172-31-20-86:~# docker images
+REPOSITORY        TAG       IMAGE ID       CREATED        SIZE
+jenkins/jenkins   latest    be95e0848c42   7 days ago     466MB
+nginx             latest    53a18edff809   7 weeks ago    192MB
+
+>docker run -d -p 80:80 nginx
+
+root@ip-172-31-20-86:~# docker run -d -p 80:80 nginx
+3d1a52d091b05878e079b89002aa57b460c5263a585a8add0ecc671608d1f999
+
+>docker ps
+
+root@ip-172-31-20-86:~# docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS                                 NAMES
+3d1a52d091b0   nginx     "/docker-entrypoint.…"   3 seconds ago   Up 3 seconds   0.0.0.0:80->80/tcp, [::]:80->80/tcp   thirsty_shaw
+
+>docker exec -it 3d1a52d091b0
+
+root@ip-172-31-20-86:~# docker exec -it 3d1a52d091b0  /bin/bash
+docker: 'docker exec' requires at least 2 arguments
+
+root@ip-172-31-20-86:~# docker exec -it 3d1a52d091b0 /bin/bash
+root@3d1a52d091b0:/# hostname
+3d1a52d091b0
+root@3d1a52d091b0:/# hostname -i
+172.17.0.3
+
+root@5336d949f33b:/# ls
+bin  boot  dev  docker-entrypoint.d  docker-entrypoint.sh  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@5336d949f33b:/# cd opt/
+root@5336d949f33b:/opt# ls
+root@5336d949f33b:/opt# cd ..
+root@5336d949f33b:/# ls
+bin  boot  dev  docker-entrypoint.d  docker-entrypoint.sh  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@5336d949f33b:/# cd usr/
+root@5336d949f33b:/usr# ls
+bin  games  include  lib  lib64  libexec  local  sbin  share  src
+root@5336d949f33b:/usr# cd lib
+root@5336d949f33b:/usr/lib# ls
+apt  dpkg  init  locale  lsb  mime  nginx  os-release  sasl2  ssl  systemd  terminfo  tmpfiles.d  udev  x86_64-linux-gnu
+root@5336d949f33b:/usr/lib#
+root@5336d949f33b:/usr/lib# docker images
+bash: docker: command not found
+root@5336d949f33b:/usr/lib# docker imagesexit
+bash: docker: command not found
+root@5336d949f33b:/usr/lib# read escape sequence
+root@ip-172-31-20-86:~# docker images
+REPOSITORY        TAG       IMAGE ID       CREATED        SIZE
+jenkins/jenkins   latest    be95e0848c42   7 days ago     466MB
+nginx             latest    53a18edff809   7 weeks ago    192MB
+ubuntu            latest    a04dc4851cbc   2 months ago   78.1MB
+hello-world       latest    74cc54e27dc4   2 months ago   10.1kB
+root@ip-172-31-20-86:~# docekr runRead from remote host ec2-34-204-17-141.compute-1.amazonaws.com: Connection reset by peer
+Connection to ec2-34-204-17-141.compute-1.amazonaws.com closed.
+client_loop: send disconnect: Connection reset by peer
+
+we can see below nginx web page and nginx is running on containers
+
+![image](https://github.com/user-attachments/assets/878995bc-58b1-4f20-982e-2d60f105891d)
+

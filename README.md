@@ -4198,3 +4198,268 @@ we can see below nginx web page and nginx is running on containers
 
 ![image](https://github.com/user-attachments/assets/878995bc-58b1-4f20-982e-2d60f105891d)
 
+
+
+
+03/04/2025::
+=================
+
+Dockerfile Introduction::
+=================
+
+A Dockerfile is a script containing a series of instructions on how to build a Docker image. It defines the environment and application setup, including dependencies, configurations, and the necessary steps to get your application running in a container.
+
+dockerfile is a text file, and it have set up of all instructiuons
+
+https://docs.docker.com/get-started/docker-concepts/building-images/writing-a-dockerfile/
+
+
+Dockerfile::dockerfile is text file, and it have set up of all instructiuons
+FROM nginx or ubuntu or 
+LABEL "AUthor =nagaraju@gamil.com"
+RUN apt update && apt-get install jenkins -y
+COPY . .  ----src destnations
+ADD  . . -----src destinatuion
+CMD ["echo",".jar"]
+ENTRYPOINT ["echo", "war"]
+EXPOSE 8080,8085
+ENV APP_HOME ="Ifocus SOlutions pvt ltd"
+WORKDIR $APP_HOME /app
+VOLUME 
+
+Key Components of a Dockerfile:
+==========================
+
+FROM: Specifies the base image for the Docker image you're creating.
+FROM ubuntu:20.04
+
+RUN: Executes commands inside the container, often used to install dependencies.
+RUN apt-get update && apt-get install -y python3
+
+COPY or ADD: Copies files from your local machine into the container.
+COPY . /app
+
+WORKDIR: Sets the working directory for any subsequent commands in the Dockerfile.
+WORKDIR /app
+CMD: Specifies the command to run when a container is started from the image.
+CMD ["python3", "app.py"]
+EXPOSE: Defines the network ports the container will listen on at runtime.
+EXPOSE 8080
+
+ENV: Sets environment variables inside the container.
+ENV APP_ENV=production
+CMD & ENTRPOINT can be executed starting of the container
+
+CMD & ENTRYPOINT Different::
+===========================
+--use CMD you can change the value but ENTRYPOINT not possible to change the value at the starting of the container
+--CMD you can change the argument value 
+--ENTRYPOINT can’t change the argument value
+
+CMD ["echo",".jar"]
+ENTRYPOINT ["echo", "war"]
+
+CMD/ENTRYPOINT ====should have something which runs till your app is alive
+
+Note::
+=======
+life time of your container -->time which your cmd/entrypont is alive
+
+Example Dockerfile:::
+==========
+Here’s a simple Dockerfile example that builds a Python web app:
+
+# Use an official Python runtime as the base image
+FROM python:3.9-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the current directory contents into the container
+COPY . /app
+
+# Install the required dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expose the port the app runs on
+EXPOSE 5000
+
+# Define the command to run the application
+CMD ["python", "app.py"]
+
+Building and Running a Docker Image:
+Once you’ve written your Dockerfile, you can build and run it using Docker commands:
+
+Build the Docker image:
+
+>docker build -t my-python-app .
+
+Run the container:
+>docker run -d -p 8080:8080 my-python-app
+
+A **Dockerfile** is a script containing a series of instructions on how to build a Docker image. It defines the environment and application setup, including dependencies, configurations, and the necessary steps to get your application running in a container. Essentially, it's the blueprint for creating Docker images.
+
+### Key Components of a Dockerfile:
+1. **FROM**: Specifies the base image for the Docker image you're creating.
+   ```dockerfile
+   FROM ubuntu:20.04
+   ```
+
+2. **RUN**: Executes commands inside the container, often used to install dependencies.
+   ```dockerfile
+   RUN apt-get update && apt-get install -y python3
+   ```
+
+3. **COPY** or **ADD**: Copies files from your local machine into the container.
+   ```dockerfile
+   COPY . /app
+   ```
+
+4. **WORKDIR**: Sets the working directory for any subsequent commands in the Dockerfile.
+   ```dockerfile
+   WORKDIR /app
+   ```
+
+5. **CMD**: Specifies the command to run when a container is started from the image.
+   ```dockerfile
+   CMD ["python3", "app.py"]
+   ```
+
+6. **EXPOSE**: Defines the network ports the container will listen on at runtime.
+   ```dockerfile
+   EXPOSE 8080
+   ```
+
+7. **ENV**: Sets environment variables inside the container.
+   ```dockerfile
+   ENV APP_ENV=production
+   ```
+
+### Example Dockerfile
+Here’s a simple Dockerfile example that builds a Python web app:
+
+```dockerfile
+# Use an official Python runtime as the base image
+FROM python:3.9-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the current directory contents into the container
+COPY . /app
+
+# Install the required dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expose the port the app runs on
+EXPOSE 5000
+
+# Define the command to run the application
+CMD ["python", "app.py"]
+```
+
+### Building and Running a Docker Image:
+Once you’ve written your Dockerfile, you can build and run it using Docker commands:
+
+1. **Build the Docker image**:
+   ```bash
+   docker build -t my-python-app .
+   ```
+
+2. **Run the container**:
+   ```bash
+   docker run -p 5000:5000 my-python-app
+   ```
+
+The Dockerfile streamlines the process of creating consistent and reproducible environments, making it easier to deploy applications across different systems.
+
+Example2 Dockerfile::
+===================
+
+https://github.com/ifocus7358/spring-ms/blob/master/Dockerfile
+
+Please clone this project in ubuntu machines
+
+root@ip-172-31-20-86:~# git clone https://github.com/ifocus7358/spring-ms.git
+
+![image](https://github.com/user-attachments/assets/188db6f2-c5b5-419d-8824-0b9b9c6728ee)
+
+root@ip-172-31-20-86:~# cd spring-ms/
+root@ip-172-31-20-86:~/spring-ms# ls
+Dockerfile  azure-pipeline.yml  azure-pipelines.yml  deploy.yaml  pom.xml  src
+root@ip-172-31-20-86:~/spring-ms#
+
+Build Image::
+============
+root@ip-172-31-20-86:~/spring-ms# docker image build -t springmyapp .
+[+] Building 0.4s (12/12) FINISHED                                                                                      docker:default
+ => [internal] load build definition from Dockerfile                                                                              0.0s
+ => => transferring dockerfile: 256B                                                                                              0.0s
+ => WARN: FromAsCasing: 'as' and 'FROM' keywords' casing do not match (line 1)                                                    0.0s
+ => [internal] load metadata for registry.access.redhat.com/ubi8/openjdk-11:latest                                                0.3s
+ => [internal] load metadata for docker.io/library/maven:3.6.3-jdk-11                                                             0.1s
+ => [auth] library/maven:pull token for registry-1.docker.io                                                                      0.0s
+ => [internal] load .dockerignore                                                                                                 0.0s
+ => => transferring context: 2B                                                                                                   0.0s
+ => [internal] load build context                                                                                                 0.0s
+ => => transferring context: 2.76kB                                                                                               0.0s
+ => [stage-1 1/2] FROM registry.access.redhat.com/ubi8/openjdk-11:latest@sha256:28b35eea470174a39befd8eb9250a3276b79a4f6e7dac787  0.0s
+ => [stage1 1/3] FROM docker.io/library/maven:3.6.3-jdk-11@sha256:1d29ccf46ef2a5e64f7de3d79a63f9bcffb4dc56be0ae3daed5ca5542b38aa  0.0s
+ => CACHED [stage1 2/3] COPY . .                                                                                                  0.0s
+ => CACHED [stage1 3/3] RUN mvn clean package                                                                                     0.0s
+ => CACHED [stage-1 2/2] COPY --from=stage1 target/*.jar app.jar                                                                  0.0s
+ => exporting to image                                                                                                            0.0s
+ => => exporting layers                                                                                                           0.0s
+ => => writing image sha256:bdbbb4bbe700af425032e6a27d6909e2906677fbffce9b833d596e3f37082479                                      0.0s
+ => => naming to docker.io/library/springmyapp                                                                                    0.0s
+
+ 1 warning found (use docker --debug to expand):
+ - FromAsCasing: 'as' and 'FROM' keywords' casing do not match (line 1)
+root@ip-172-31-20-86:~/spring-ms#
+
+![image](https://github.com/user-attachments/assets/44c6ba1e-7322-436d-af30-4606cb484283)
+
+create container::
+===============
+
+root@ip-172-31-20-86:~/spring-ms# docker images
+REPOSITORY                  TAG       IMAGE ID       CREATED        SIZE
+spring                      latest    bdbbb4bbe700   9 hours ago    410MB
+springmyapp                 latest    bdbbb4bbe700   9 hours ago    410MB
+srinu7358/spring-03042025   latest    bdbbb4bbe700   9 hours ago    410MB
+allinstructions             latest    c2993e54968d   9 hours ago    1.17GB
+<none>                      <none>    805cbec82269   9 hours ago    1.17GB
+testmyownimage              latest    621f509fde33   10 hours ago   1.1GB
+ifocus                      latest    381bfb89fb02   10 hours ago   1.1GB
+srinu7358/ifocus-myapp      latest    381bfb89fb02   10 hours ago   1.1GB
+root@ip-172-31-20-86:~/spring-ms# docker run -d -p 8081:8081 springmyapp:latest
+17ac78f05de4abdca3d46972e63f29c897a011d732ca3e76e7c1ef2158af10b1
+root@ip-172-31-20-86:~/spring-ms#
+
+![image](https://github.com/user-attachments/assets/d0132046-021c-46b7-9259-75382dc155fb)
+
+![image](https://github.com/user-attachments/assets/b9064110-355c-4619-adf5-fb9fac875b6f)
+
+Image formate::
+============
+
+<registoryname>/repositoryname:<imagetag>
+Docker.io            username/reponame  ::latest
+
+[docker.io/srinu7358/ifocus-myapp] :latest  ---->image formate
+
+docker.io -----registry name  ----docekr hub
+
+srinu7358 ----repository username
+
+ifocus-myapp ---image name
+
+>docker container run –d –p 8080:8080 springmyapp:1.0
+-d --> detached mode
+-p  -->mappimg a port
+8080: host port
+8080: container port
+springmyapp:: image name
+1.0:: tag name
+
+

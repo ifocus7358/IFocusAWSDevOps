@@ -4463,3 +4463,303 @@ springmyapp:: image name
 1.0:: tag name
 
 
+
+
+04/04/2025:::
+====================
+
+
+Network Types in Docker:
+============================
+
+•	bridge: Default network for containers on the same host.
+•	host: The container shares the host’s networking stack.
+•	overlay: Used for multi-host networking (requires Docker Swarm).
+•	none: No network connectivity is assigned to the container.
+•	>bridge network is used for single node communication
+•	>overlay network is used for multi node communication
+•	---Kubernetes/swarm are used to communicate 2 containers in docker that’s like orchestration
+macvlan network:: may be used to give containers across different hosts unique, routable IP addresses in a larger network
+IPVLAN:Containers share the host’s MAC address but have individual IP addresses.
+
+create my own network ::
+=========================
+> docker network create my_custom_network
+
+![image](https://github.com/user-attachments/assets/43dbaed8-eb30-45ad-8df3-6cd9f1a3d063)
+
+Created my own network - my_custom_network
+![image](https://github.com/user-attachments/assets/a2136223-4a9a-48bc-b884-3e64a57268d5)
+
+Run Containers on the Custom Network::
+=================
+>docker run -d --name container1 --network my_custom_network nginx
+
+![image](https://github.com/user-attachments/assets/0f65c683-0ef5-4415-9413-41a46735a633)
+
+>docker run -d --name container2 --network my_custom_network redis
+
+
+![image](https://github.com/user-attachments/assets/0a4811c8-24cf-400a-93f9-e72196d504a5)
+
+In this example:
+•	container1 will run an Nginx container.
+•	container2 will run a Redis container.
+
+Both containers are connected to the my_custom_network.
+
+Inspect the Network::
+=================
+To view detailed information about a network (like connected containers and settings), use the docker network inspect command:
+>docker ps
+>docker network ls
+> docker network inspect my_custom_network
+
+![image](https://github.com/user-attachments/assets/367d1d82-51e3-43fa-88c0-5a8414c73688)
+
+Connect a Container to a Network:
+==================
+> docker network connect my_custom_network container_name
+Disconnect a Container from a Network:
+> docker network disconnect my_custom_network container_name
+Remove a Docker Network::
+>docker network rm my_custom_network
+Note that the network must be unused by any containers before it can be removed.
+
+A common use case for Docker networks is to isolate different applications or microservices, ensuring that containers in one application cannot easily communicate with containers in another. This helps you maintain security and control over how containers interact with each other.
+
+USE CASE::
+======================
+
+--default network bridge can only ping throw ip address not container name
+--our own network bridge(mybridge) able to ping both ip address and container name that’s advantage of network create.
+
+
+---Kubernetes/swarm are used to communicate 2 containers in docker that’s like orchestration
+--if you create your own bridge network the advantage is you can able to resolved the any issues using container name not only ipaddress but by default using you can able to resolved the issues by ipaddress.
+
+>bridge network is used for single node communication
+>overlay network is used for multi node communication
+
+
+Docker Swarm::
+===================
+
+Docker and Docker Swarm are both tools used to manage containers, but they serve different purposes and have different features. 
+
+Docker::
+===========
+
+Docker is a platform that allows you to create, deploy, and run applications inside containers. Containers are lightweight, portable, and ensure that the application works the same regardless of where it's deployed, making Docker a powerful tool for developing, testing, and deploying applications.
+
+
+Key Features of Docker:
+=======================
+•	Containerization: Docker encapsulates applications and their dependencies into containers, ensuring consistency across environments (e.g., development, staging, production).
+•	Images and Containers: Docker uses images to define the environment for an application. Containers are instances of those images.
+•	Docker Hub: Docker Hub is a cloud-based registry where you can find pre-built images or upload your own.
+•	Portability: Docker containers can run on any system with Docker installed, from your laptop to a cloud server.
+•	Isolation: Containers are isolated from the host system, so they don’t interfere with other processes or systems.
+
+Common Docker Commands:
+===================
+•	Build an Image: docker build -t my-image .
+•	Run a Container: docker run -d --name my-container my-image
+•	List Containers: docker ps
+•	Stop a Container: docker stop my-container
+•	Remove a Container: docker rm my-container
+•	List Images: docker images
+
+Docker Swarm::
+==================
+
+Docker Swarm is a clustering and orchestration tool for Docker containers. It allows you to deploy and manage multiple containers across multiple Docker hosts (machines), forming a swarm. This means that you can treat a collection of Docker hosts as a single virtual host and manage them as one.
+Docker Swarm makes it easier to scale, deploy, and maintain containerized applications in production environments. It provides high availability, fault tolerance, and easy scaling of applications across multiple machines.
+
+Key Concepts in Docker Swarm:
+===============================
+•	Node: A machine (physical or virtual) running Docker that is part of the Swarm cluster. There are two types of nodes:
+o	Manager Node: Manages the cluster and orchestrates services.
+o	Worker Node: Runs the actual containers based on instructions from manager nodes.
+•	Service: A service is a description of the tasks (containers) you want to run. When you define a service, Docker Swarm ensures that the desired number of replicas of that service are running at all times.
+•	Task: A task is a running container in the context of a service. Each task runs a container that is part of a service.
+
+Docker vs Docker Swarm::
+============================
+•	Docker is used to build and run containers on a single machine, whereas Docker Swarm extends Docker to manage containers across a cluster of machines.
+•	Docker Swarm provides orchestration features such as load balancing, scaling, and high availability, which are not available in basic Docker.
+•	Docker Swarm is built into Docker, making it easier to set up and use compared to other container orchestration systems like Kubernetes.
+
+
+I have created 2 ubuntu machines::
+================================
+
+1.Manager Node
+2.Worker Node
+
+![image](https://github.com/user-attachments/assets/8d70d3eb-1df0-46a0-bbae-fa9474112b8f)
+
+>docker swarm init runs on master
+>docker swarm join runs on node
+
+> docker swarm join --token SWMTKN-1-33cj3h7mhtq98iy5aifyy9s1cdqnzh4jgl3rdgdez0vbfx8fnc-bu27q63wt2i7qfgkh0r07o85o 172.31.24.64:2377
+
+![image](https://github.com/user-attachments/assets/c3434137-924b-4ea7-9a3f-24f188d3d19a)
+
+![image](https://github.com/user-attachments/assets/015201ed-aea1-461f-90bc-08c1d78fae7b)
+
+![image](https://github.com/user-attachments/assets/06424e51-1f9b-46e3-89af-80062ccb2f26)
+
+>once initialize the swarm it will automatically created overlay network
+
+![image](https://github.com/user-attachments/assets/d19378c2-01c9-4698-ad1d-c8af6aff1a55)
+
+
+create our own overlay network ::
+==========================
+
+>docker network create –d overlay qt-overlay
+
+![image](https://github.com/user-attachments/assets/84319ff3-e569-40c5-bdf6-69634bf65484)
+
+> docker network create -d overlay qt-overlay
+>docker node ls
+
+![image](https://github.com/user-attachments/assets/3fb48730-74d2-4e65-ac80-dce537b2438a)
+
+![image](https://github.com/user-attachments/assets/c545c853-157b-484f-8b7b-e3c81236d142)
+
+create service under the overlay network::
+========================
+
+> docker service create --name my-web-service --replicas 3 -p 80:80 nginx
+>docker service ls
+>docker node ls
+
+--docker always maintain --replicas 3 means 3 containers by default if for example 1 container die docker automatically create container automatically this is main use of services with docker
+
+docker swarm:: multi containarization for your applications
+
+Docker Swarm is a built-in container orchestration tool that allows you to manage a cluster of Docker hosts as a single entity
+
+in any cloud we have docker /container services lke
+
+1.AWS --->ECS ----elastic conatienr services
+2.Azure---->ACS  ----Azure contaienr services
+3.Kuberneties---->EKS  ---Elsatic kuberneties services
+
+
+Docker compose::
+====================
+
+Docker Compose is a tool for defining and running multi-container Docker applications. With Compose, you can define all the services, networks, and volumes that your application needs in a single file (docker-compose.yml), and then run it with a single command.
+
+Key Concepts in Docker Compose::
+==============================
+
+Service: A service is a container that runs a specific application, e.g., a web app or database. In the docker-compose.yml file, each service is defined along with its configuration (image, ports, volumes, etc.).
+
+Network: Docker Compose automatically creates a default network for all services in your docker-compose.yml file, allowing them to communicate with each other by name. You can define additional custom networks as needed.
+
+Volume: Volumes are used for persistent storage. For example, you may want to store database data between container restarts. Volumes are defined in the docker-compose.yml and can be shared across services.
+
+Benefits of Using Docker Compose::
+====================================
+
+Simplified Configuration: Instead of managing multiple docker run commands and configurations, you can manage everything in a single YAML file.
+
+Easy to Use: With a single command (docker-compose up), you can start all the services and bring up the entire environment.
+
+Reproducibility: Since the configuration is defined in a file, you can share the same environment across different developers or servers.
+
+Version Control: You can check the docker-compose.yml file into version control to track changes to the application's environment.
+
+Networking & Volumes: Compose automatically sets up networking between containers and shared volumes.
+
+Define the Application in a docker-compose.yml File::
+=======================================
+
+
+The docker-compose.yml file is the configuration file where you define the services, networks, and volumes. Here's a basic example for a web application using NGINX and a MySQL database:
+
+docker-compose.yml::
+======================
+
+version: '3.8'  # Docker Compose file version
+
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./html:/usr/share/nginx/html
+    networks:
+      - mynetwork
+
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - mynetwork
+
+volumes:
+  db_data:
+
+networks:
+  mynetwork:
+    driver: bridge
+
+
+Explanation:
+======================
+
+services: Defines two services—web and db.
+===============================
+
+The web service uses the nginx:latest image, binds port 8080 on the host to port 80 in the container, and mounts a volume ./html to the container's /usr/share/nginx/html directory.
+
+The db service uses the mysql:latest image and sets an environment variable for the MySQL root password. It also mounts a volume db_data to store MySQL data persistently.
+
+Both services are connected to the same network mynetwork.
+
+Starting the Application
+=========================
+
+Once you have your docker-compose.yml file ready, navigate to the directory containing the file and run the following command to start all the services defined in the Compose file:
+please run the below command to start the docker conpose file
+
+>docker-compose up
+
+This will pull the images (if not already available) and start the containers.
+
+To run it in the background (detached mode), use the -d flag:
+
+>docker-compose up -d
+
+Commonly Used Docker Compose Commands::
+=======================================
+
+docker-compose up: Build, (re)create, start, and attach to containers for a service.
+
+docker-compose up -d: Run containers in detached mode (in the background).
+
+docker-compose down: Stop and remove all containers, networks, and volumes defined in the docker-compose.yml file.
+
+docker-compose build: Build or rebuild the services in the background.
+
+docker-compose logs: View logs from the services.
+
+docker-compose ps: View the status of the services and containers.
+
+docker-compose exec: Execute commands in a running container (e.g., docker-compose exec web bash).
+
+docker-compose stop: Stop services without removing containers.
+
+docker-compose start: Start services that were stopped with docker-compose stop.
+
+docker-compose restart: Restart services.
+

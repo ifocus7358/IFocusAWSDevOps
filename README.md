@@ -4763,3 +4763,102 @@ docker-compose start: Start services that were stopped with docker-compose stop.
 
 docker-compose restart: Restart services.
 
+
+
+07/04/2025::
+===================
+
+
+
+Docker SWARM Overview::
+=====================
+- this is Docker Inc's Container Orchestration Platform
+- it only supports managing Docker containerized application workloads
+- it is pretty easy to install and learn
+- can be installed on a laptop with pretty basic configuation as well as it is very light weight
+- good for POC or learning purpose
+- not production grade
+
+
+Kubernetes Overview::
+=========
+
+Kubernetes (often abbreviated as K8s) is an open-source container orchestration platform designed to automate the deployment, scaling, and management of containerized applications. Originally developed by Google.
+
+free and opensource container orchestration platform developed by Google along with many open source contributors
+- it is production grade
+- free for personal and commercial use
+- as it is opensource, we won't get support from Google
+- only supports command line interface (CLI)
+- doesn't support web console
+- Kubernetes does provide some basic Dashboard but it is considered a security vulnerability, hence no one uses the Kubernetes Dashboard
+- Rancher is opensource webconsole for Google Kubernetes
+
+- supports inbuilt monitoring features
+  - it can check the health of our application, when it finds your application is not responding, it can repair it or replace it with another good healthy instance of your application
+  - it supports inbuilt load-balancing
+ 
+  Master ---Management --(Orchestration)
+  Node machine (minion) --workers (containers)
+
+   POD ---the smallest unit, mainatained one or more containers
+
+  YAML --key-value paires
+
+
+1.Container Orchestration: Kubernetes helps you manage multiple containers, ensuring that they run efficiently and reliably across many servers.
+2.Scaling: Kubernetes can automatically scale your applications up or down based on demand, making it easier to handle varying workloads.
+3.Load Balancing: It can distribute network traffic to different containers, ensuring that applications remain responsive even under heavy loads.
+4.Self-Healing: If a container crashes or stops working, Kubernetes can automatically restart or replace it, ensuring the application stays available.
+5.Automated Deployment and Rollback: Kubernetes can automate the process of deploying new versions of an application, and if something goes wrong, it can roll back to a previous version.
+6.Storage Management: Kubernetes can automatically mount the storage resources you need for your applications, making it easier to manage persistent data.
+
+In short, Kubernetes is designed to make it easier to manage applications at scale in a way that is highly automated, reliable, and efficient. It’s widely used in DevOps platform
+
+Cluster:: collection of nodes with a single responsibility
+All the nodes in that cluster do same process, same type of work can will do collection of nodes in cluster
+
+Cluster::
+============
+a cluster might refer to a set of virtual machines or containers working together for a specific application or service.
+
+Kubernetes Cluster Components:
+===============================
+
+1.Master Node (Control Plane):
+The Master Node is the brain of the Kubernetes cluster. It manages the cluster and makes decisions about scheduling, scaling, and maintaining the health of the application. The control plane consists of several key components:
+
+1.API Server::
+==================
+
+The API server exposes the Kubernetes API, which is used to interact with the cluster.
+
+2.Scheduler::
+============
+The scheduler assigns work (pods) to available worker nodes.
+
+3.Controller Manager: :
+===================
+Ensures that the desired state of the system is maintained, such as ensuring that the correct number of pods are running.
+
+4.etcd: 
+===========
+A distributed key-value store used to store all cluster data, including the state of the system (like deployed pods, config maps, and secrets).
+
+Worker Nodes (Minions):
+==================
+o	The Worker Nodes are responsible for running the actual application workloads. These nodes host the pods, which are the smallest deployable units in Kubernetes. A worker node typically runs:
+1.Kubelet: An agent that ensures the containers in the pods are running and healthy.
+2.Kube Proxy: A network proxy that maintains network rules for pod communication.
+3.Container Runtime: The software responsible for running containers (e.g., Docker, containerd).
+4.Pods::
+A pod is the smallest unit of execution in Kubernetes and can contain one or more containers that share resources such as networking and storage. Pods are always deployed in a Kubernetes cluster and are managed by the control plane.
+
+5.Services:
+A service in Kubernetes is a way to expose an application running in a pod to other pods or external users. It ensures that network communication between pods is reliable, even as pods are dynamically created or destroyed.
+
+NOTE:::In kubernetes master is not created containers, this is recommended approaches we can create containers in master also but not proposed
+
+kubernetes is help to individually scale micro services
+
+Basically, kubernetes is used for to maintain containers

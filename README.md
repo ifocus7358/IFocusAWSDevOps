@@ -5562,3 +5562,548 @@ spec:
     - port: 80          # Service port (used internally by ClusterIP)
       targetPort: 8080  # Port on the pod
       nodePort: 30080   # Optional: if not set, Kubernetes picks one
+
+
+
+
+11/04/2025::
+=================
+
+
+OpenShift Orchestration::
+======================
+
+
+OpenShift is an open-source container application platform built around Docker containers and Kubernetes. It's designed to help developers and IT organizations to develop, deploy, and manage applications in a highly automated environment. OpenShift offers a range of tools to make the development process more streamlined, such as CI/CD (Continuous Integration/Continuous Delivery) pipelines, a user-friendly web console, monitoring, and logging features.
+Here are some key features and components of OpenShift:
+1.	Kubernetes-based orchestration: OpenShift is built on top of Kubernetes, providing advanced container orchestration, scaling, and management.
+2.	Developer Tools: OpenShift offers tools that make it easier for developers to deploy applications, like a simple web-based interface, CLI (Command Line Interface), and built-in support for various programming languages.
+3.	Integrated CI/CD Pipelines: OpenShift integrates with Jenkins and other tools to automate the process of building, testing, and deploying applications.
+4.	Security: OpenShift has several security features, including integrated authentication, network policies, and role-based access control (RBAC).
+5.	Multi-cloud & Hybrid Cloud: It supports hybrid cloud environments, so applications can run across multiple infrastructures—on-premises, in the cloud, or a combination.
+6.	Automated Scaling: OpenShift can automatically scale applications up or down based on resource usage.
+7.	Registry and Image Management: It includes a built-in container registry to manage Docker images and store them for your applications
+
+Red Hat Openshift Overview::
+============================
+
+- Red Hat Openshift is developed on top of Opeensource OKD ( which in turn is developed on top of opensource Kubernetes )
+- supports command line interface and webconsole(GUI)
+- supports Role based access control (RBAC), hence multiple users can be created with different level of access to Openshift cluster
+- supports many additional features on top of all the Kubernetes features
+  1. User Management
+  2. Pre-integrated monitoring tools ( Prometheus & Grafana Dashboards )
+  3. Out of the box - Private Container Registry
+  4. Routes - a new feature only available in Openshift which is developed on top of Kubernetes Ingress
+  5. Using the Kubernetes operators, the Red Hat Openshift team has many additional features on top of Kubernetes
+- Openshift version upto 3 - supported many different container runtime/engines including Docker
+- Openshift version 4 and above - only supports Podman Container Engine and CRI-O Container Runtime
+- Due to security vulnerabilities issues in Docker, 
+
+Using Free RedHat Developer Sandox on cloud - Openshift::
+=============================
+
+https://console.redhat.com/openshift/sandbox
+
+we need to register free Red Hat account for  OpenShift
+
+![image](https://github.com/user-attachments/assets/d78d4def-c589-446d-934b-3109d979b3be)
+
+![image](https://github.com/user-attachments/assets/c4900081-a748-4f8b-b1fa-625fcccb3b5c)
+
+Enter Redhat Login Name
+
+![image](https://github.com/user-attachments/assets/785803bd-4d2b-480f-9d1e-9249a3d28cad)
+
+Enter the Password
+
+![image](https://github.com/user-attachments/assets/234e53d4-da04-4781-92d6-f44baed46307)
+
+![image](https://github.com/user-attachments/assets/16f49b20-0632-46c7-920e-e87cd7894ce1)
+
+click create account
+
+![image](https://github.com/user-attachments/assets/1478f402-bb54-4166-8351-c77cb04e4303)
+
+you will get the Email verification, please check the email
+
+![image](https://github.com/user-attachments/assets/a0b0a9cf-d103-4fae-92d7-a70f62f8d391)
+
+![image](https://github.com/user-attachments/assets/7182b022-e9a6-442a-96eb-a19bfd0e5401)
+
+click the link which is you got
+
+![image](https://github.com/user-attachments/assets/4dd9989d-3c90-4ac3-a510-ab26b2f3cf42)
+
+Red Hat Developer Sandbox
+
+![image](https://github.com/user-attachments/assets/42a31572-f423-4512-bfbd-5a3684b52508)
+
+![image](https://github.com/user-attachments/assets/bfb647b7-747a-4338-b640-209587fa699f)
+
+![image](https://github.com/user-attachments/assets/4d7d539a-9a07-4df4-9ecb-ceee0797d482)
+
+Select Openshift Launch
+
+![image](https://github.com/user-attachments/assets/19773259-41b0-47ae-8f76-e2386d520d1b)
+
+
+click DevSandBox
+
+![image](https://github.com/user-attachments/assets/f0218c41-9bdf-4c8b-9684-9f2c54574d63)
+
+select Role is Developer
+
+![image](https://github.com/user-attachments/assets/5d6e2c8f-c1d5-4ee1-a399-74ef2e03fd00)
+
+click all selected permissions
+
+![image](https://github.com/user-attachments/assets/17d83152-51fe-49b8-8a31-ba66884efaf1)
+
+![image](https://github.com/user-attachments/assets/f4e855fd-a34a-4668-941b-fb4baf3c28bb)
+
+![image](https://github.com/user-attachments/assets/2ce3c97d-de12-4e69-b2b4-6e51100d421a)
+
+Get started
+
+![image](https://github.com/user-attachments/assets/ac637db7-c2cc-4b8f-8841-809131f72732)
+
+Openshift is ready and go to Developer -->Helm---->Helm charts---->search Jenkins ---Installed Jenkins Helm Charts
+
+
+![image](https://github.com/user-attachments/assets/b91564a1-27d1-473c-b8b3-ce67403694fc)
+
+Login command line::
+
+OC ----> Openshift Client
+
+click Copy login command at top right corner
+
+![image](https://github.com/user-attachments/assets/4e1735af-4114-4d8d-8c01-526127c36ceb)
+
+![image](https://github.com/user-attachments/assets/6f4cfb80-19ca-4a3b-b4be-405c6e69f812)
+
+copy Login in with this Token
+
+![image](https://github.com/user-attachments/assets/11a7edbb-f3aa-4e79-8457-90dedfb0af06)
+
+![image](https://github.com/user-attachments/assets/3d18ae45-f2d6-43ca-b8e5-95d5b2d23a64)
+
+Getting oc command is not found
+
+So we need to download the oc from google
+
+1 download oc.exe https://developers.redhat.com/openshift/command-line-tools
+2 navigate to environment variables -> system variables -> new
+3 add here: /path/to/the/oc.exe
+
+https://docs.redhat.com/en/documentation/openshift_container_platform/4.8/html/cli_tools/openshift-cli-oc#cli-installing-cli_cli-developer-commands
+
+https://access.redhat.com/downloads/content/290/ver=4.18/rhel---9/4.18.7/x86_64/product-software
+
+OC download LInk::
+=====================
+
+OC
+is a client tool used to create and manage Openshift resources in OpenShift
+it makes REST call to API Server
+
+https://access.redhat.com/downloads/content/290/ver=4.18/rhel---9/4.18.8/x86_64/product-software
+
+Download Windows client
+
+![image](https://github.com/user-attachments/assets/14d36459-8cf3-4ba1-8cb5-361f34730aa0)
+
+Download the oc for window and extracted all the files
+
+![image](https://github.com/user-attachments/assets/85d30663-3fc1-4a7a-878a-3f316b74ce7c)
+
+Open from command line
+
+![image](https://github.com/user-attachments/assets/999801e8-1078-474c-9ab1-27e4bb3e8a21)
+
+
+![image](https://github.com/user-attachments/assets/3122d471-9a89-467c-b986-d9229f95db9f)
+
+Switch project
+>oc project <projectname>
+>oc project srinu942-dev
+
+![image](https://github.com/user-attachments/assets/31f81eac-41a4-403b-8de3-3edf5089e4f0)
+
+OpenShift resources
+•	Deployment (K8s resource)
+•	ReplicaSet (K8s resource)
+•	Pod (K8s resource)
+•	Job (K8s resource)
+•	DaemonSet (K8s resource)
+•	StatefulSet (K8s resource)
+•	Build ( OpenShift resource - Custom Resource added by OpenShift )
+•	ImageStream ( OpenShift resource - Custom Resource added by OpenShift )
+•	DeploymentConfig ( OpenShift resource - Custom Resource added by OpenShift )
+
+Deployment command looks like this
+>oc create deployment nginx --image=bitnami/nginx:latest --replicas=3
+
+![image](https://github.com/user-attachments/assets/dbc5a3bd-aa15-4346-b753-9621d8dd3e81)
+
+Deployment::
+=================
+This is a JSON/YAML definition which is stored in etcd database
+The deployment is managed by Deployment Controller
+when we applications, they are deployed as Deployment with Kubernetes/OpenShift
+Deployment Controller creates ReplicaSet, which is then managed by ReplicaSet Controller
+Deployment has one or more ReplicaSet(s)
+
+ReplicaSet::
+=============
+This is a JSON/YAML definition which is stored in etcd database
+The ReplicaSet is managed by ReplicaSet Controller
+ReplicaSet capture details like
+How many Pod instances are desired?
+ReplicaSet Controller reads the ReplicaSet definition and learns the desired Pod instance count
+ReplicaSet Controller creates so many Pod definition as indicated in the ReplicaSet
+ReplicaSet Controller ensures the desired Pod count matches with the actual Pod count, whenever a Pod crashes, it is the responsibility of ReplicaSet Controller to ensure the desired and actual Pods are equal
+ReplicaSet has one or more Pods
+
+Pod::
+====
+is a collection of one or more Containers
+IP address is assigned on the Pod level not on the Container level
+If two containers are in the same Pod, there will be sharing IP Address of the Pod
+within container, application are deployment ( tomcat,mysql, nginx these are applications )
+recommended best practice,only one application should be there in a Pod
+Pods are scheduled by Scheduler onto some Node
+every Pod has a Network Stack and Network Interface Card (NIC)
+
+Kubelet::
+===========
+is a daemon service that interacts with the Container Runtime on the current node/server where kubelet is running
+kubelet downloads the required container image and creates the Pod containers
+kubelet frequently reports the status of Pod container status to the API server
+kubelet also monitors the health of POds running on the node and ensures they are healthy
+kubelet will there on every node ( master and worker nodes )
+
+kube-proxy::
+=============
+is a Pod that runs one instance per node (both master and worker nodes)
+provides load-balancing a group of similar Pods
+Sample Demo Project fro Openshift
+
+Kubectl::
+========
+is a client tool used to create and manage deployments and services in Kubernetes
+it also works in OpenShift
+it make REST call to API Server
+
+OC::
+===
+is a client tool used to create and manage Openshift resources in OpenShift
+it makes REST call to API Server
+
+https://github.com/wicksy/openshift-demo-app/tree/master
+https://github.com/wicksy/openshift-demo-app
+
+
+
+Splunk::
+============
+
+Splunk is a powerful platform for searching, monitoring, and analyzing machine-generated big data via a web-style interface. It’s widely used for:
+
+1.Log aggregation
+
+2.Monitoring and observability
+
+3.Security (SIEM/SOAR)
+
+4.Dashboards and alerting
+
+Splunk Integrate With Jenkins::
+===========================
+
+Jenkins install link
+
+https://www.cherryservers.com/blog/install-jenkins-ubuntu
+
+Splunk install link
+
+https://www.splunk.com/en_us/download/splunk-enterprise.html
+
+Create Account
+
+![image](https://github.com/user-attachments/assets/4275dc32-37e7-41a4-8634-89bff7f6ce38)
+
+Click Create your account
+
+
+Verify the email
+
+![image](https://github.com/user-attachments/assets/65095d9c-4f93-4d44-9f0c-50d11c752093)
+
+![image](https://github.com/user-attachments/assets/9479e5ef-2f2f-481a-9ff2-796971238eb7)
+
+Copy Wget URL
+
+wget -O splunk-9.4.1-e3bdab203ac8-linux-amd64.deb https://download.splunk.com/products/splunk/releases/9.4.1/linux/splunk-9.4.1-e3bdab203ac8-linux-amd64.deb
+
+![image](https://github.com/user-attachments/assets/91dcd374-23b5-4951-ba91-2031f3df5e7a)
+
+Create one AWS Ubuntu Machine and past the Wget url and enter
+
+![image](https://github.com/user-attachments/assets/da0d2f58-6893-41a3-87dc-9cfde5abdb54)
+
+![image](https://github.com/user-attachments/assets/6ca6e5cc-e93e-4fc2-ad07-321d2b546b6d)
+
+Download successfully using that wget url
+
+![image](https://github.com/user-attachments/assets/9ab0f410-654b-41bf-aeaf-0ddd9cb8f9bf)
+
+Go to splunk tutorial
+https://docs.splunk.com/Documentation/Splunk/9.4.1/SearchTutorial/WelcometotheSearchTutorial
+
+go to below link
+
+https://docs.splunk.com/Documentation
+
+click Splunk enterprise
+![image](https://github.com/user-attachments/assets/e29a16ac-e8c0-4001-b9e7-0a38083a143c)
+
+Search tutorial
+![image](https://github.com/user-attachments/assets/a4c67579-d4a8-433f-b5f8-b7e8c03a6440)
+
+Part 1: Getting started
+
+•	Install Splunk Enterprise
+
+![image](https://github.com/user-attachments/assets/8cd7631b-f021-4e17-8c17-c745719cd89e)
+
+Install the Splunk Enterprise DEB package
+![image](https://github.com/user-attachments/assets/9d25b1f5-610b-424c-a382-ada36c84def9)
+
+dpkg -i splunk_package_name.deb.
+
+>sudo dpkg -i
+
+![image](https://github.com/user-attachments/assets/eab015f9-658c-40a4-a0a9-f3d4a5fe9c2e)
+
+Run below command in ubuntu
+
+>sudo dpkg -i splunk-9.4.1-e3bdab203ac8-linux-amd64.deb
+
+![image](https://github.com/user-attachments/assets/b927efe6-7bf2-47f1-bc5c-08362cd95812)
+
+
+![image](https://github.com/user-attachments/assets/a071e14d-4dda-415c-8bdb-ed610ce66b56)
+
+To start the splunk please run below command
+
+>sudo /opt/splunk/bin/splunk enable boot-start
+
+
+![image](https://github.com/user-attachments/assets/322f83e9-90a3-4e9e-b4d4-09e08d19ff7f)
+
+
+Click enter
+
+![image](https://github.com/user-attachments/assets/b932045c-f586-439d-9c13-f2afd9035922)
+
+
+![image](https://github.com/user-attachments/assets/790d67c5-cc65-4a8a-a2ed-1f52f878cfea)
+
+
+![image](https://github.com/user-attachments/assets/d65bda8a-2255-4231-9d9b-e2914798a31f)
+
+
+Username:: 
+
+![image](https://github.com/user-attachments/assets/a1a5f381-3ded-4291-b779-561b2373e4e1)
+
+
+Password:
+
+![image](https://github.com/user-attachments/assets/a95d259e-b0b6-4299-98e4-c690b057bbf5)
+
+
+![image](https://github.com/user-attachments/assets/2ffcc310-04f3-4e41-b09d-63087230510d)
+
+
+For enabled boost start right for that we need to run below command
+
+>sudo ufw allow openSSH
+
+![image](https://github.com/user-attachments/assets/857857f0-9262-4d83-af93-53097331bfcd)
+
+
+![image](https://github.com/user-attachments/assets/cc881e9c-94c1-454f-a8cc-4a375778c1e8)
+
+
+openSSH means open por 22
+
+enabled port for splunk
+
+>sudo ufw allow 8000
+
+
+![image](https://github.com/user-attachments/assets/0112d03f-4f19-43cc-b27a-0b5d5248fa4c)
+
+
+Check the splunk status
+>sudo ufw status
+
+Inactive, so we need to enabled
+
+
+![image](https://github.com/user-attachments/assets/ab0950ca-af19-439f-bf79-401d208c175d)
+
+
+Enabled splunk
+
+>sudo ufw enable
+
+
+![image](https://github.com/user-attachments/assets/4740cb2b-3ff0-4f2f-a1c9-af5e2bd8af6b)
+
+
+![image](https://github.com/user-attachments/assets/f8ef0cda-91bb-499f-be3b-257c106657f2)
+
+
+Now see openSSH port -22 allowed
+8000 port enabled allowed 
+
+Now we need to start splunk
+>sudo /opt/splunk/bin/splunk start
+
+
+![image](https://github.com/user-attachments/assets/d0593020-69ba-4212-9046-ff69e665593f)
+
+
+![image](https://github.com/user-attachments/assets/37cf9f5e-85b2-442b-9e28-3dcac692605e)
+
+
+Enter user/pwd
+Srinu/Srinu@7358
+
+![image](https://github.com/user-attachments/assets/e0313ff9-9ddc-42e6-9e46-6152e40c0a51)
+
+
+![image](https://github.com/user-attachments/assets/12a6cc79-6efa-42eb-a0ea-70d1084d84da)
+
+
+Go Apps----- Find More Apps
+
+![image](https://github.com/user-attachments/assets/e0123b5d-c8eb-42d8-9eff-099b55046509)
+
+
+Splunk App for Jenkins  ----we need to install this app in splunk to integrate with Jenkins
+
+![image](https://github.com/user-attachments/assets/00be0b2e-ba7c-4660-aa40-4ae7e54b8e87)
+
+
+Click install
+Asking UN/PWD
+
+NOTE:: make sure you should provide the UN/PWD is splunk enterprise at the time of create the splunk account right
+
+![image](https://github.com/user-attachments/assets/91c02e5a-9b89-4cdd-8807-34084482a48e)
+
+Click agree & install
+
+![image](https://github.com/user-attachments/assets/fdaaaa1b-a921-40a1-a1d4-195e62da4cc1)
+
+
+![image](https://github.com/user-attachments/assets/ff25f0de-c433-42ae-b6dd-47de03da9a22)
+
+
+![image](https://github.com/user-attachments/assets/9664e7c6-53af-42f2-ada4-4c4d893d128e)
+
+
+Click splunk enterprise
+
+We can see splunk for Jenkins
+
+
+![image](https://github.com/user-attachments/assets/690e9a3f-b577-4f7d-86fc-3c5585d0cc22)
+
+
+Go to settings
+
+![image](https://github.com/user-attachments/assets/ebc01f35-ef98-40a6-ae30-ceb03d7a7e79)
+
+
+Click data inputs
+
+![image](https://github.com/user-attachments/assets/70250ace-d56a-4429-af88-7773f67919c5)
+
+
+![image](https://github.com/user-attachments/assets/f97f0d52-0141-4b1c-bb27-08bf8ccc414b)
+
+
+Click HTTP Event Collector
+
+![image](https://github.com/user-attachments/assets/9250ef52-d8d2-4591-b0ad-4df3b387053b)
+
+
+Click Global settings
+
+![image](https://github.com/user-attachments/assets/5be60128-7a12-4ea7-bb97-fe0915dd95c7)
+
+
+Uncheck
+
+Enable SSL
+
+
+![image](https://github.com/user-attachments/assets/97643fac-bde5-42fc-952b-9dda35662bfe)
+
+
+For integrate with Jenkins we required New token
+
+Click New Token
+
+
+![image](https://github.com/user-attachments/assets/8af2c367-bd84-4f37-af82-b6f2ef917912)
+
+
+Provided name
+
+![image](https://github.com/user-attachments/assets/e900004d-8aa3-426c-b44a-8f86fd472a13)
+
+
+Next
+
+![image](https://github.com/user-attachments/assets/c16959b5-c0cf-4fa9-81b0-d13e5abf8223)
+
+
+Click submit
+
+![image](https://github.com/user-attachments/assets/b045b901-267b-430f-86ba-3fa9e9d5b626)
+
+
+Click start searching
+
+![image](https://github.com/user-attachments/assets/3a51da53-920b-4057-8fde-9183fa0a71b7)
+
+
+Go to setting - Data Inputs –
+
+Get the token value
+
+![image](https://github.com/user-attachments/assets/4b03dc1a-5c78-4796-9865-57c765b7be9f)
+
+
+To integrate with Jenkins, we need to install Splunk plugin in Jenkins
+
+![image](https://github.com/user-attachments/assets/555c1b5c-ba85-4bae-b97e-5ba90118851b)
+
+
+Go to System
+Splunk for Jenkins Configuration
+
+
+![image](https://github.com/user-attachments/assets/72e57b42-64ab-4c2a-9d9b-19bd8dfa8387)
+
+
+![image](https://github.com/user-attachments/assets/3f1e30e1-f3a8-48fc-b818-1bb5c6a9db68)
+
+
